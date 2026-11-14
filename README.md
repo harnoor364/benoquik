@@ -58,6 +58,26 @@ and then repeat steps 3 and 4.
 
 ---
 
+## Install on LocalWP (or any real WordPress site)
+
+1. Get the two zips: run `./bin/build-zips.sh`, which puts them in `dist/` (or use the zips you were sent).
+   - `benoquik-theme.zip`: the theme
+   - `benoquik-core.zip`: the companion plugin
+2. Create a site in LocalWP (Preferred environment is fine) and open **WP Admin**.
+   Check **Dashboard → Updates**: WooCommerce now needs **WordPress 7.0 or newer**.
+3. **Plugins → Add New → search "WooCommerce" → Install → Activate.** Skip the setup wizard for now.
+4. **Plugins → Add New → Upload Plugin →** choose `benoquik-core.zip` **→ Install Now → Activate**.
+5. **Appearance → Themes → Add New → Upload Theme →** choose `benoquik-theme.zip` **→ Install Now → Activate**.
+6. **Settings → Permalinks →** pick *Custom Structure* and enter `/learn/%postname%/`. In the
+   *Product permalinks* section, choose *Shop base* (gives `/shop/product-name/`). Save.
+7. **WooCommerce → Settings → General:** set the store country to *India*, the currency to
+   *Indian rupee (₹)* and *Number of decimals* to `0`. Save.
+8. **Benoquik → Import demo content → Import.** This creates the Home page, the placeholder pages and
+   3 demo products, and sets Home as your front page.
+9. Visit the site. Change the WhatsApp number and licence details in **Benoquik → Settings**.
+
+---
+
 ## Editing the homepage (no code)
 
 The homepage is a normal page: **Pages → Home → Edit**. Each section is a block pattern:
