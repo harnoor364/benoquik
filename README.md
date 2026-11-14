@@ -58,7 +58,22 @@ and then repeat steps 3 and 4.
 
 ---
 
-## Install on LocalWP (or any real WordPress site)
+## Easiest: import the whole site into LocalWP (one zip)
+
+`benoquik-localwp-site.zip` is a complete copy of the demo site: WordPress content, WooCommerce, the
+Benoquik theme and plugin, demo pages and products, and the database. Build it with
+`./bin/export-localwp.sh`, which writes it to `dist/`.
+
+1. Open **Local** and drag `benoquik-localwp-site.zip` onto the window (or click **+** at the bottom left →
+   **Import an existing site** → choose the zip).
+2. Name the site **`benoquik`** so its address is `http://benoquik.local`, which the database is prepared for.
+   Keep the *Preferred* environment → **Import site**.
+3. When it finishes, click **Open site**. To edit, click **WP Admin** and log in with `admin` / `admin`
+   (change this password under **Users → Profile**).
+4. If you chose a different site name and the site looks unstyled, open **WP Admin → Tools →
+   Better Search Replace** (install that plugin) and replace `http://benoquik.local` with your Local address.
+
+## Install on LocalWP (or any real WordPress site), one piece at a time
 
 1. Get the two zips: run `./bin/build-zips.sh`, which puts them in `dist/` (or use the zips you were sent).
    - `benoquik-theme.zip`: the theme
