@@ -1,0 +1,37 @@
+<?php
+/**
+ * Plugin Name: Benoquik Core
+ * Description: Business logic for the Benoquik store — store settings (WhatsApp, marquee, announcement, licences), dynamic blocks, newsletter subscribers and (coming next) prescription upload & review. Kept separate from the theme so switching themes never breaks the store.
+ * Version: 0.1.0
+ * Requires at least: 6.6
+ * Requires PHP: 8.0
+ * Author: Benoquik
+ * License: GPL-2.0-or-later
+ * Text Domain: benoquik-core
+ *
+ * @package BenoquikCore
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+define( 'BENOQUIK_CORE_VERSION', '0.1.0' );
+define( 'BENOQUIK_CORE_FILE', __FILE__ );
+define( 'BENOQUIK_CORE_DIR', plugin_dir_path( __FILE__ ) );
+define( 'BENOQUIK_CORE_URL', plugin_dir_url( __FILE__ ) );
+
+require_once BENOQUIK_CORE_DIR . 'includes/class-settings.php';
+require_once BENOQUIK_CORE_DIR . 'includes/class-blocks.php';
+require_once BENOQUIK_CORE_DIR . 'includes/class-subscribers.php';
+require_once BENOQUIK_CORE_DIR . 'includes/class-frontend.php';
+require_once BENOQUIK_CORE_DIR . 'includes/class-demo-import.php';
+
+add_action(
+	'plugins_loaded',
+	static function () {
+		Benoquik\Settings::init();
+		Benoquik\Blocks::init();
+		Benoquik\Subscribers::init();
+		Benoquik\Frontend::init();
+		Benoquik\Demo_Import::init();
+	}
+);

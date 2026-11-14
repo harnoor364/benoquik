@@ -1,0 +1,44 @@
+/* Benoquik Core block styles (colours inherit from the active theme where possible). */
+
+/* Marquee */
+.bq-marquee { position: relative; overflow: hidden; background: #D9E59A; color: #23281F; }
+.bq-marquee__track { display: flex; width: max-content; animation: bq-marquee 60s linear infinite; }
+.bq-marquee:hover .bq-marquee__track,
+.bq-marquee:focus-within .bq-marquee__track,
+.bq-marquee.is-paused .bq-marquee__track { animation-play-state: paused; }
+.bq-marquee__group { display: flex; flex: none; align-items: center; gap: 1.5rem; margin: 0; padding: 0 1.5rem 0 0; list-style: none; white-space: nowrap; }
+.bq-marquee__sep { opacity: .6; }
+.bq-marquee__toggle {
+	position: absolute; right: .5rem; top: 50%; transform: translateY(-50%);
+	width: 32px; height: 32px; border-radius: 999px; border: 0; cursor: pointer;
+	background: #23281F; color: #D9E59A; font-size: 10px; line-height: 1;
+	display: grid; place-items: center; opacity: .85;
+}
+.bq-marquee__toggle:hover, .bq-marquee__toggle:focus-visible { opacity: 1; }
+@keyframes bq-marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+	.bq-marquee__track { animation: none; }
+	.bq-marquee__track > .bq-marquee__group ~ .bq-marquee__group { display: none; }
+	.bq-marquee__track > .bq-marquee__group:first-child { flex-wrap: wrap; white-space: normal; justify-content: center; padding: 0 3rem; }
+	.bq-marquee__toggle { display: none; }
+}
+
+/* Announcement */
+.bq-announcement p { margin: 0; }
+
+/* Compliance row */
+.bq-compliance { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; font-size: .8125rem; letter-spacing: .02em; text-transform: uppercase; }
+.bq-compliance a { text-decoration: underline; }
+
+/* Subscribe form */
+.bq-subscribe { position: relative; display: flex; flex-wrap: nowrap; gap: .4rem; max-width: 26rem; padding: .35rem; background: #fff; border-radius: 999px; }
+.bq-subscribe input[type=email] { flex: 1 1 0; min-width: 0; border: 0; background: transparent; padding: .7rem 1rem; font: inherit; font-size: .9375rem; color: #2B2B2B; border-radius: 999px; }
+.bq-subscribe input[type=email]::placeholder { color: #5C584F; }
+.bq-subscribe button { border: 0; border-radius: 999px; padding: .7rem 1.3rem; background: #D9E59A; color: #23281F; font: inherit; font-size: .9375rem; font-weight: 500; cursor: pointer; flex: none; }
+.bq-subscribe button:hover { background: #CBD985; }
+.bq-subscribe__msg { position: absolute; top: 100%; left: 0; margin: .6rem 1rem; color: #23281F; font-size: .875rem; }
+.bq-hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; }
+
+/* Breadcrumbs */
+.bq-breadcrumbs { font-size: .8125rem; color: #5C584F; margin-bottom: 1rem; }
+.bq-breadcrumbs a { color: inherit; }

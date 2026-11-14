@@ -1,0 +1,16 @@
+/*
+Theme Name: Benoquik
+Theme URI: https://github.com/harnoor364/benoquik
+Author: Benoquik
+Description: Editorial, calm block theme (Full Site Editing) for the Benoquik prescription pharmacy store. Built for WooCommerce. Pair with the "Benoquik Core" plugin for prescriptions, settings and dynamic blocks. SEO (titles, meta, schema, sitemaps) is intentionally left entirely to Rank Math.
+Requires at least: 6.6
+Tested up to: 7.0
+Requires PHP: 8.0
+Version: 0.1.0
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: benoquik
+Tags: block-theme, full-site-editing, e-commerce, woocommerce
+*/
+
+/* All styles live in theme.json and assets/css/theme.css. */
