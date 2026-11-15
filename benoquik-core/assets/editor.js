@@ -16,7 +16,12 @@
 		'benoquik/marquee': { title: 'Benoquik: Marquee strip', icon: 'controls-forward', supports: { align: [ 'full', 'wide' ] }, attributes: { align: { type: 'string', default: 'full' } } },
 		'benoquik/announcement': { title: 'Benoquik: Announcement bar', icon: 'megaphone' },
 		'benoquik/compliance': { title: 'Benoquik: Licence & compliance row', icon: 'shield' },
-		'benoquik/subscribe': { title: 'Benoquik: Email subscribe form', icon: 'email' }
+		'benoquik/subscribe': { title: 'Benoquik: Email subscribe form', icon: 'email' },
+		'benoquik/product-subtitle': { title: 'Benoquik: Product subtitle (pack size)', icon: 'editor-textcolor', usesContext: [ 'postId', 'postType' ] },
+		'benoquik/rx-notice': { title: 'Benoquik: Prescription notice', icon: 'shield-alt', usesContext: [ 'postId', 'postType' ] },
+		'benoquik/delivery-estimate': { title: 'Benoquik: Delivery estimate', icon: 'car', usesContext: [ 'postId', 'postType' ] },
+		'benoquik/product-info': { title: 'Benoquik: Medicine information accordions', icon: 'list-view', usesContext: [ 'postId', 'postType' ] },
+		'benoquik/sticky-cart': { title: 'Benoquik: Sticky add-to-cart (mobile)', icon: 'cart', usesContext: [ 'postId', 'postType' ] }
 	};
 
 	Object.keys( blocks ).forEach( function ( name ) {
@@ -28,10 +33,11 @@
 			category: 'benoquik',
 			supports: Object.assign( { html: false }, cfg.supports || {} ),
 			attributes: cfg.attributes || {},
+			usesContext: cfg.usesContext || [],
 			edit: function ( props ) {
 				return el( 'div', useBlockProps(),
 					el( InspectorControls, {}, el( PanelBody, { title: __( 'Content', 'benoquik-core' ) }, settingsLink ) ),
-					el( SSR, { block: name, attributes: props.attributes } )
+					el( SSR, { block: name, attributes: props.attributes, urlQueryArgs: props.context && props.context.postId ? { post_id: props.context.postId } : {} } )
 				);
 			},
 			save: function () { return null; }

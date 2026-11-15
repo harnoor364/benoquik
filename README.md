@@ -58,6 +58,50 @@ and then repeat steps 3 and 4.
 
 ---
 
+## Repairing a LocalWP site imported from the first zip (garbled characters, no Add to cart)
+
+The first `benoquik-localwp-site.zip` had a database file with no `SET NAMES utf8mb4` line. Local
+therefore imported it as latin1, which double-encoded every special character (`—` became `â€”`,
+`×` became `Ã—`). That also corrupted the stored pack-size data, so variable products lost their
+selector and Add to cart was disabled. The exporter is fixed, and the plugin now includes a repair tool.
+
+In **Local**, right-click your site → **Open site shell**, then run these one at a time:
+
+1. **Back up first.** The file is saved next to your `public` folder, at
+   `~/Local Sites/<your-site>/app/backup-before-fixes.sql`:
+```bash
+wp db export ../backup-before-fixes.sql
+```
+2. Install the updated plugin and theme. Use the zips you downloaded; this example assumes they're in
+   your Downloads folder.
+```bash
+wp plugin install ~/Downloads/benoquik-core.zip --force --activate
+```
+```bash
+wp theme install ~/Downloads/benoquik-theme.zip --force --activate
+```
+3. Preview what the encoding repair will change. This step changes nothing:
+```bash
+wp benoquik fix-encoding --dry-run
+```
+4. Run the whole repair: characters, products, Home page, caches, then a final check.
+```bash
+wp benoquik upgrade
+```
+   Add `--keep-home` if you've already edited your homepage and don't want it rebuilt.
+   The last lines it prints must show `Rows containing "â€": 0` and `Rows containing "Ã": 0`, and
+   `2 purchasable variation(s)` for each product.
+5. Turn on a payment method so checkout works: **WooCommerce → Settings → Payments → Cash on delivery → Enable**.
+
+To undo everything: `wp db import ../backup-before-fixes.sql`.
+
+No shell? Use **WP Admin → Benoquik → Repair store data** instead (back up with UpdraftPlus first).
+
+**Individual repair commands:** `wp benoquik doctor` (report only) · `wp benoquik fix-encoding` ·
+`wp benoquik repair-products` · `wp benoquik rebuild-home` · `wp benoquik flush`
+
+---
+
 ## Easiest: import the whole site into LocalWP (one zip)
 
 `benoquik-localwp-site.zip` is a complete copy of the demo site: WordPress content, WooCommerce, the
@@ -168,6 +212,11 @@ UpdraftPlus (backups).
 Step-by-step setup for each comes with the full guide in step 4.
 
 ---
+
+## Placeholders
+
+Every placeholder (names, licence numbers, GSTIN, pharmacist, grievance officer, testimonials,
+images, prices) is listed in **[PLACEHOLDERS.md](PLACEHOLDERS.md)**, with where to edit each one.
 
 ## Roadmap
 

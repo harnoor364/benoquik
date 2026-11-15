@@ -1,0 +1,43 @@
+<!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"bq-main bq-blog","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained","contentSize":"1240px"}} -->
+<main class="wp-block-group bq-main bq-blog" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60)"><!-- wp:shortcode -->
+[benoquik_breadcrumbs]
+<!-- /wp:shortcode -->
+
+<!-- wp:heading {"level":1,"fontSize":"huge"} -->
+<h1 class="wp-block-heading has-huge-font-size">Learn</h1>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"textColor":"muted"} -->
+<p class="has-muted-color has-text-color">Clear, medically reviewed guides on vitiligo, depigmentation therapy and sun care. General information only — always follow your own doctor’s advice.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:query {"queryId":41,"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"className":"bq-post-grid"} -->
+<div class="wp-block-query bq-post-grid"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3,"minimumColumnWidth":"16rem"}} -->
+<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3"} /-->
+
+<!-- wp:post-terms {"term":"category","className":"bq-product-card__cat","fontSize":"x-small"} /-->
+
+<!-- wp:post-title {"level":2,"isLink":true,"fontSize":"x-large"} /-->
+
+<!-- wp:post-excerpt {"excerptLength":24,"fontSize":"small"} /-->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
+<!-- wp:query-pagination-previous /-->
+
+<!-- wp:query-pagination-numbers /-->
+
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph -->
+<p>Nothing found. Try another search, or <a href="/shop/">browse the shop</a>.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer","className":"site-footer"} /-->

@@ -19,6 +19,11 @@ docker cp "$C":/var/www/html/wp-content "$OUT/benoquik-site/wp-content"
 docker cp "$C":/var/www/html/benoquik.sql "$OUT/benoquik-site/benoquik.sql"
 docker compose exec -T wordpress rm -f /var/www/html/benoquik.sql
 
+# IMPORTANT: "wp search-replace --export" writes no charset header. Without it, importers
+# (LocalWP included) may read the file as latin1 and double-encode every — ’ × ₹ ℞ character.
+SQL="$OUT/benoquik-site/benoquik.sql"
+{ printf '/*!40101 SET NAMES utf8mb4 */;\nSET NAMES utf8mb4;\n'; cat "$SQL"; } > "$SQL.tmp" && mv "$SQL.tmp" "$SQL"
+
 # The theme & plugin are mounted from this repo; copy the real files in.
 rm -rf "$OUT/benoquik-site/wp-content/themes/benoquik" "$OUT/benoquik-site/wp-content/plugins/benoquik-core"
 cp -R benoquik-theme "$OUT/benoquik-site/wp-content/themes/benoquik"

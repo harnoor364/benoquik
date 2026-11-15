@@ -226,8 +226,44 @@ leaf("bento-time", 800, 1000, (220, 230, 196), (196, 210, 166), (122, 142, 74))
 sun("bento-sun", 800, 800)
 leaf("bento-doctor", 1200, 800, (236, 232, 222), (222, 216, 202), (90, 110, 70))
 
-# --- Patient story placeholders (abstract, no real people) ---
-portrait("story-1", 600, 800, (214, 206, 190), (206, 160, 128))
-portrait("story-2", 1200, 800, (198, 186, 166), (178, 128, 96), wrap=(244, 240, 232))
-portrait("story-3", 600, 800, (226, 218, 204), (150, 102, 74))
-portrait("story-4", 600, 800, (206, 214, 196), (222, 184, 156))
+def hero_visual(name, w, h):
+    """Warm, softly lit backdrop with the product tube - a placeholder for real photography."""
+    img = gradient(w, h, (226, 196, 168), (196, 156, 122))
+    img = blobs(img, [(240, 218, 196), (206, 166, 134), (250, 236, 220)], n=6, blur=int(w * 0.14), alpha=150)
+    # diagonal window-light streak
+    layer = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    d = ImageDraw.Draw(layer)
+    d.polygon([(w * 0.15, 0), (w * 0.55, 0), (w * 1.0, h * 0.55), (w * 0.75, h * 0.7)], fill=(255, 244, 228, 70))
+    layer = layer.filter(ImageFilter.GaussianBlur(w * 0.06))
+    img = Image.alpha_composite(img.convert("RGBA"), layer).convert("RGB")
+    base = h * 0.84
+    tw = w * 0.3
+    img = shadow(img, w * 0.5, base, tw)
+    d = ImageDraw.Draw(img)
+    tube(d, w * 0.5, base, h * 0.56, tw, label="20% w/w")
+    save(grain(img), name, 78)
+
+
+def abstract(name, w, h, palette, seed):
+    """Neutral abstract texture for testimonial placeholders (no faces)."""
+    random.seed(seed)
+    img = gradient(w, h, palette[0], palette[1])
+    img = blobs(img, palette[2:], n=6, blur=int(min(w, h) * 0.16), alpha=160)
+    layer = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    d = ImageDraw.Draw(layer)
+    for i in range(7):
+        y0 = h * random.uniform(0.1, 0.95)
+        pts = [(x, y0 + math.sin(x / w * math.pi * 1.6 + i) * h * 0.06) for x in range(0, w + 20, 20)]
+        d.line(pts, fill=(255, 255, 255, 38), width=int(h * 0.025))
+    layer = layer.filter(ImageFilter.GaussianBlur(min(w, h) * 0.03))
+    img = Image.alpha_composite(img.convert("RGBA"), layer).convert("RGB")
+    save(grain(img), name)
+
+
+hero_visual("hero-visual", 960, 1200)
+
+# --- Patient story placeholders: abstract textures, NO faces ---
+abstract("story-1", 600, 800, [(232, 222, 206), (214, 200, 180), (244, 236, 224), (206, 188, 164)], 11)
+abstract("story-2", 1200, 800, [(206, 196, 176), (176, 162, 140), (226, 216, 198), (160, 146, 124), (138, 130, 115)], 12)
+abstract("story-3", 600, 800, [(220, 226, 206), (198, 208, 182), (236, 240, 226), (178, 190, 160)], 13)
+abstract("story-4", 600, 800, [(238, 226, 214), (220, 202, 186), (248, 240, 232), (206, 182, 166)], 14)

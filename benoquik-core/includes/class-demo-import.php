@@ -203,15 +203,15 @@ class Demo_Import {
 		$desc = '<p>Benoquik contains monobenzone 20% w/w, a prescription depigmenting agent for people with <strong>extensive vitiligo</strong>. It permanently removes pigment from the remaining normally pigmented skin so that skin tone becomes even.</p><p><strong>Benoquik is not a cure for vitiligo and does not restore colour.</strong> Use only under the supervision of a dermatologist.</p>';
 		$short = 'Prescription monobenzone 20% w/w cream for extensive vitiligo. Permanently removes remaining pigment for an even skin tone. Not a cure; does not restore colour. ℞ Prescription required.';
 
-		// [slug, name, image, attribute name, [ [option, price, mrp], ... ] ]  — PLACEHOLDER PRICES.
+		// [slug, name, subtitle, image, attribute name, [ [option, price, mrp], ... ] ]  — PLACEHOLDER PRICES.
 		$products = array(
-			array( 'benoquik-cream-30g', 'Benoquik 20% w/w Cream — 30 g', 'product-30g.webp', 'Pack size', array( array( '1 tube (30 g)', 649, 749 ), array( '2 tubes (2 × 30 g)', 1249, 1498 ) ) ),
-			array( 'benoquik-2-pack', 'Benoquik 2-Pack — 2 × 30 g', 'product-2pack.webp', 'Bundle', array( array( 'Cream only', 1249, 1498 ), array( 'With SPF 50 sunscreen', 1649, 1948 ) ) ),
-			array( 'benoquik-3-month-pack', 'Benoquik 3-Month Pack — 3 × 30 g', 'product-3month.webp', 'Bundle', array( array( 'Cream only', 1799, 2247 ), array( 'With SPF 50 sunscreen', 2199, 2697 ) ) ),
+			array( 'benoquik-cream-30g', 'Benoquik 20% w/w Cream', '30 g tube', 'product-30g.webp', 'Pack size', array( array( '1 tube (30 g)', 649, 749 ), array( '2 tubes (2 × 30 g)', 1249, 1498 ) ) ),
+			array( 'benoquik-2-pack', 'Benoquik 2-Pack', '2 × 30 g tubes', 'product-2pack.webp', 'Bundle', array( array( 'Cream only', 1249, 1498 ), array( 'With SPF 50 sunscreen', 1649, 1948 ) ) ),
+			array( 'benoquik-3-month-pack', 'Benoquik 3-Month Pack', '3 × 30 g tubes', 'product-3month.webp', 'Bundle', array( array( 'Cream only', 1799, 2247 ), array( 'With SPF 50 sunscreen', 2199, 2697 ) ) ),
 		);
 
 		foreach ( $products as $i => $p ) {
-			list( $slug, $name, $img, $attr_name, $options ) = $p;
+			list( $slug, $name, $subtitle, $img, $attr_name, $options ) = $p;
 			if ( get_page_by_path( $slug, OBJECT, 'product' ) ) {
 				$log[] = "Product exists: {$name}";
 				continue;
@@ -238,6 +238,12 @@ class Demo_Import {
 			$attr->set_variation( true );
 			$product->set_attributes( array( $attr ) );
 			$product->update_meta_data( '_bq_requires_prescription', 'yes' );
+			$product->update_meta_data( '_bq_subtitle', $subtitle );
+			foreach ( Product_Fields::default_info() as $key => $html ) {
+				$product->update_meta_data( $key, $html );
+			}
+			$product->set_reviews_allowed( false );
+			$product->set_default_attributes( array( sanitize_title( $attr_name ) => $options[0][0] ) );
 			$product_id = $product->save();
 
 			foreach ( $options as $o ) {

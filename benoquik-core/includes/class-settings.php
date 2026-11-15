@@ -34,6 +34,14 @@ class Settings {
 					'marquee_items'     => array( __( 'Marquee items (one per line)', 'benoquik-core' ), 'textarea', "Free delivery above ₹999\nPrescription required\nGenuine product\nPan-India shipping", __( 'The lime scrolling strip on the homepage.', 'benoquik-core' ) ),
 				),
 			),
+			'product'    => array(
+				'title'  => __( 'Product page', 'benoquik-core' ),
+				'fields' => array(
+					'rx_notice_text'   => array( __( 'Prescription notice', 'benoquik-core' ), 'text', '℞ Prescription required — you’ll upload it at checkout. Our pharmacist verifies every order.', __( 'Shown on products with "Requires prescription" ticked.', 'benoquik-core' ) ),
+					'delivery_default' => array( __( 'Default delivery estimate', 'benoquik-core' ), 'text', 'Usually delivered in 3–7 working days after prescription approval.', '' ),
+					'delivery_rules'   => array( __( 'Delivery estimate by pincode', 'benoquik-core' ), 'textarea', "40|2–4 working days (Mumbai & Maharashtra)\n11|2–4 working days (Delhi NCR)\n56|2–4 working days (Bengaluru & Karnataka)\n60|3–5 working days (Chennai & Tamil Nadu)\n70|3–5 working days (Kolkata & West Bengal)\n79|6–9 working days (North-East)", __( 'One rule per line: pincode start|delivery text. The longest matching start wins; other pincodes use the default. Example: 400|1–2 working days (Mumbai city).', 'benoquik-core' ) ),
+				),
+			),
 			'compliance' => array(
 				'title'  => __( 'Licences & compliance (shown in the footer)', 'benoquik-core' ),
 				'fields' => array(

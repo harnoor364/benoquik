@@ -15,12 +15,6 @@ class Frontend {
 		add_filter( 'render_block_core/button', array( __CLASS__, 'whatsapp_button' ), 10, 2 );
 		add_shortcode( 'benoquik_breadcrumbs', array( __CLASS__, 'breadcrumbs' ) );
 		add_shortcode( 'benoquik_whatsapp_url', array( __CLASS__, 'whatsapp_url' ) );
-		add_filter( 'woocommerce_product_add_to_cart_text', array( __CLASS__, 'loop_button_text' ), 10, 2 );
-	}
-
-	/** Friendlier product-card button for pack-size (variable) products. */
-	public static function loop_button_text( $text, $product ) {
-		return ( $product && $product->is_type( 'variable' ) && $product->is_purchasable() ) ? __( 'Choose pack', 'benoquik-core' ) : $text;
 	}
 
 	public static function whatsapp_url() {
