@@ -109,7 +109,7 @@ Each of these pages currently says only *"This page is a placeholder"*. Edit the
 - ☐ Grievance Officer (see section 3)
 - ☐ Licences & Compliance
 - ☐ Medical Disclaimer
-- ☐ Privacy Policy (WordPress's default text: **Settings → Privacy**)
+- ☐ **Privacy Policy: currently a DRAFT. Publish it** (**Settings → Privacy**, then edit and publish the page). Until then the Privacy Policy links in the registration checkbox and at checkout show "page not found".
 
 Also delete WordPress's sample content: **Posts → "Hello world!"** and **Pages → "Sample Page"**.
 

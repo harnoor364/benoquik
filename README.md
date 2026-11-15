@@ -58,6 +58,24 @@ and then repeat steps 3 and 4.
 
 ---
 
+## Checkout rules: login and Terms acceptance (plugin v0.4.0)
+
+The order of steps is always **log in or register (with Terms) → checkout form → tick Terms → Place Order → Razorpay popup**.
+The Razorpay popup can never open for a logged-out customer, or without the Terms box ticked.
+
+- **Logged-out visitors** who open the checkout (or click *Proceed to checkout*) are sent to **My account** with a
+  "Please log in or create an account to place your order" notice. After logging in or registering they come
+  straight back to the checkout with their cart intact. Only addresses on this site are accepted as the return address.
+- **Registration** needs the *"I agree to the Terms & Conditions and Privacy Policy"* box ticked. The acceptance date and
+  the version (last-updated date) of both pages are saved. See **Users → (customer) → Terms & Privacy acceptance**.
+- **Checkout** has a required *"I have read and agree…"* box. The server checks it too, so an order can't be
+  forced through without it. The acceptance time and policy versions are saved on the order and shown on the
+  order screen under the billing address.
+- **Payment page** (where Razorpay opens its popup): if an order has no recorded acceptance, for example one you created
+  in the admin, the customer sees the pay form with the Terms box first.
+- These settings are enforced by the plugin: guest checkout off, registration on the My account page on,
+  Terms page = *Terms & Conditions*.
+
 ## Updating an existing LocalWP site to v0.3.0 (new colours, real 20 g product, mobile)
 
 In Local's site shell (right-click the site → **Open site shell**), from inside your site folder:
