@@ -58,6 +58,31 @@ and then repeat steps 3 and 4.
 
 ---
 
+## FAQ schema from accordions (plugin 0.5.2)
+
+The plugin turns visible accordions into **FAQPage** schema and adds it to **Rank Math's** JSON-LD graph
+through the `rank_math/json_ld` filter. There's never a separate script and only one FAQPage per page.
+If Rank Math already has a FAQPage (from its FAQ block), the questions are merged into it.
+
+**Where the questions come from:**
+- **Pages and posts:** core *Details* blocks. The summary is the question; the content is the answer, as plain text.
+  Hidden blocks (⋮ → Hide), blocks inside a hidden group, and empty answers are skipped.
+- **Products:** the **FAQs** box in *Medicine information*. Questions are in **bold** and end with "?". The other
+  boxes, such as Overview, are headings rather than questions, so they aren't marked up.
+
+**Turning it on or off:** the checkbox **"Output FAQ schema from accordions"**:
+- **Pages and posts:** editor sidebar → *FAQ schema*.
+- **Products:** Product data → General.
+
+It's on by default for the FAQ page, the homepage and products, and off elsewhere.
+
+**Schema type:** the homepage and FAQ page use **WebPage** schema instead of Article. Product schema is untouched.
+
+**Example output:** `docs/schema-example-faq-page.json` and `docs/schema-example-product-page.json`.
+
+> Google currently shows FAQ rich results only for some well-known health and government sites. The markup is still
+> valid and helps search engines understand the page.
+
 ## Learn (blog) — theme 0.4.1 / plugin 0.5.1
 
 Articles live at `/learn/` (the *Learn* page is the WordPress posts page), with these addresses:

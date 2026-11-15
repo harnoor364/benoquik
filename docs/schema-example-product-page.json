@@ -1,0 +1,78 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "http://localhost:8080/#organization",
+      "name": "Benoquik"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "http://localhost:8080/#website",
+      "url": "http://localhost:8080/",
+      "name": "Benoquik",
+      "publisher": {
+        "@id": "http://localhost:8080/#organization"
+      }
+    },
+    {
+      "@type": "ItemPage",
+      "@id": "http://localhost:8080/shop/benoquik-cream-20g/#webpage",
+      "url": "http://localhost:8080/shop/benoquik-cream-20g/",
+      "name": "Benoquik Cream 20 g",
+      "isPartOf": {
+        "@id": "http://localhost:8080/#website"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "http://localhost:8080/shop/benoquik-cream-20g/#richSnippet",
+      "name": "Benoquik Cream 20 g",
+      "sku": "BQ-20G",
+      "description": "Monobenzone Cream USP 20% w/w (20 g) for people with extensive vitiligo. Used under a dermatologist’s supervision, it permanently removes remaining pigment so skin tone becomes even. It is not a cure and does not restore color.",
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "29.00",
+        "highPrice": "55.00",
+        "offerCount": 2,
+        "priceCurrency": "USD",
+        "availability": "http://schema.org/InStock"
+      },
+      "mainEntityOfPage": {
+        "@id": "http://localhost:8080/shop/benoquik-cream-20g/#webpage"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "http://localhost:8080/shop/benoquik-cream-20g/#faq",
+      "url": "http://localhost:8080/shop/benoquik-cream-20g/",
+      "inLanguage": "en-US",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does Benoquik cure vitiligo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It does not cure vitiligo or restore color; it permanently removes remaining pigment so skin tone becomes even."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a prescription?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. You will upload it at checkout and our pharmacist verifies every order before dispatch."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Change is gradual and differs from person to person. Keep your follow-up appointments with your dermatologist."
+          }
+        }
+      ]
+    }
+  ]
+}

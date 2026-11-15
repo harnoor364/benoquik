@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Benoquik Core
  * Description: Business logic for the international Benoquik store — store settings (WhatsApp, marquee, announcement, licenses, shipping countries), dynamic blocks, newsletter subscribers and (coming next) prescription upload & review. Kept separate from the theme so switching themes never breaks the store.
- * Version: 0.5.1
+ * Version: 0.5.2
  * Requires at least: 6.6
  * Requires PHP: 8.0
  * Author: Benoquik
@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BENOQUIK_CORE_VERSION', '0.5.1' );
+define( 'BENOQUIK_CORE_VERSION', '0.5.2' );
 define( 'BENOQUIK_CORE_FILE', __FILE__ );
 define( 'BENOQUIK_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BENOQUIK_CORE_URL', plugin_dir_url( __FILE__ ) );
@@ -33,6 +33,7 @@ require_once BENOQUIK_CORE_DIR . 'includes/class-checkout-gate.php';
 require_once BENOQUIK_CORE_DIR . 'includes/class-international.php';
 require_once BENOQUIK_CORE_DIR . 'includes/class-blog.php';
 require_once BENOQUIK_CORE_DIR . 'includes/class-blog-setup.php';
+require_once BENOQUIK_CORE_DIR . 'includes/class-faq-schema.php';
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	require_once BENOQUIK_CORE_DIR . 'includes/class-cli.php';
@@ -54,5 +55,6 @@ add_action(
 		Benoquik\International::init();
 		Benoquik\Blog::init();
 		Benoquik\Blog_Setup::init();
+		Benoquik\FAQ_Schema::init();
 	}
 );

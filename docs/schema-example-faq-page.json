@@ -1,0 +1,116 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "http://localhost:8080/#organization",
+      "name": "Benoquik"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "http://localhost:8080/#website",
+      "url": "http://localhost:8080/",
+      "name": "Benoquik",
+      "publisher": {
+        "@id": "http://localhost:8080/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "http://localhost:8080/faq/#webpage",
+      "url": "http://localhost:8080/faq/",
+      "name": "FAQ",
+      "isPartOf": {
+        "@id": "http://localhost:8080/#website"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "http://localhost:8080/faq/#faq",
+      "url": "http://localhost:8080/faq/",
+      "inLanguage": "en-US",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do you ship to my country?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We ship to most countries worldwide. At checkout you can only choose countries we deliver to. See Shipping & Availability for the full list of countries we cannot ship to."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does delivery take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Usually 7–20 business days after your prescription is approved, depending on your country and customs. You can check an estimate for your country on each product page."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will I pay customs duties?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Possibly. Our prices exclude import duties, VAT and customs fees. If your country charges them, they are paid by you on delivery."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which currencies do you accept?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Prices are in US dollars (USD). You can pay with most international cards; your bank converts the amount to your own currency at its exchange rate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I track my order?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every order ships with tracking. We email you the tracking link when your order is dispatched, and you can also see it in My account."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my prescription from my own doctor accepted?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — a valid prescription from a doctor licensed in your country is required. It must be in English, clearly readable and show the patient’s name, the medicine, the doctor’s name, registration and signature. Upload it as a PDF, JPG or PNG."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a prescription?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Benoquik is a prescription-only medicine. Our pharmacist verifies every order before dispatch."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Benoquik cure vitiligo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It does not cure vitiligo and does not restore color. It permanently removes the remaining pigment from normal skin so that skin tone becomes even, for people with extensive vitiligo under a dermatologist’s supervision."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the depigmentation permanent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Depigmentation with monobenzone is generally permanent and cannot be reliably reversed, so make this decision carefully with your dermatologist."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I protect my skin from the sun?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depigmented skin burns easily. Use a broad-spectrum sunscreen every day, wear protective clothing and avoid strong midday sun."
+          }
+        }
+      ]
+    }
+  ]
+}
