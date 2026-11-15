@@ -29,6 +29,8 @@ rm -rf "$OUT/benoquik-site/wp-content/themes/benoquik" "$OUT/benoquik-site/wp-co
 cp -R benoquik-theme "$OUT/benoquik-site/wp-content/themes/benoquik"
 cp -R benoquik-core "$OUT/benoquik-site/wp-content/plugins/benoquik-core"
 rm -rf "$OUT/benoquik-site/wp-content/uploads/wc-logs" "$OUT/benoquik-site/wp-content/upgrade" "$OUT/benoquik-site/wp-content/cache"
+# Never ship local test helpers (e.g. payment-gateway stand-ins used only for automated tests).
+rm -f "$OUT"/benoquik-site/wp-content/mu-plugins/bq-test-* "$OUT"/benoquik-site/wp-content/mu-plugins/bq-trace.php "$OUT/benoquik-site/wp-content/debug.log"
 find "$OUT" -name '.DS_Store' -delete
 
 (cd "$OUT" && zip -qr ../benoquik-localwp-site.zip benoquik-site)
