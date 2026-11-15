@@ -48,6 +48,16 @@ class CLI {
 	}
 
 	/**
+	 * Update the three products to the real Benoquik range (20 g packs,
+	 * names, subtitles, SKUs, product photos). Keeps IDs, prices and orders.
+	 *
+	 * @subcommand migrate-v030
+	 */
+	public function migrate_v030() {
+		self::out( Repair::migrate_v030() );
+	}
+
+	/**
 	 * Rebuild the Home page from the theme's homepage sections.
 	 *
 	 * @subcommand rebuild-home

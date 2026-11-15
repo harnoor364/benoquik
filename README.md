@@ -58,6 +58,32 @@ and then repeat steps 3 and 4.
 
 ---
 
+## Updating an existing LocalWP site to v0.3.0 (new colours, real 20 g product, mobile)
+
+In Local's site shell (right-click the site → **Open site shell**), from inside your site folder:
+
+1. Back up the database:
+```bash
+wp db export ../backup-before-v030.sql
+```
+2. Copy the new `benoquik-theme` folder over `wp-content/themes/benoquik`, and `benoquik-core` over
+   `wp-content/plugins/benoquik-core`. Or upload them as zips with *Replace current with uploaded*.
+3. Update the products (20 g packs, names, real photos, SKUs), then rebuild the homepage and clear caches:
+```bash
+wp benoquik migrate-v030
+```
+```bash
+wp benoquik rebuild-home
+```
+```bash
+wp benoquik flush
+```
+   No shell? **Benoquik → Repair store data → tick "Also rebuild the Home page" → Run repair** does all three.
+
+Old product addresses (`/shop/benoquik-cream-30g/`, `/shop/benoquik-3-month-pack/`) redirect automatically.
+
+---
+
 ## Repairing a LocalWP site imported from the first zip (garbled characters, no Add to cart)
 
 The first `benoquik-localwp-site.zip` had a database file with no `SET NAMES utf8mb4` line. Local
@@ -178,8 +204,18 @@ The homepage is a normal page: **Pages → Home → Edit**. Each section is a bl
 ## Design system (in `theme.json`)
 
 - **Fonts** (self-hosted, no Google requests): *Instrument Serif* for headings, *Inter* for body and UI text
-- **Colours:** cream `#F6F4EF` · olive charcoal `#23281F` · taupe `#8A8273` (framing only) ·
-  lime `#D9E59A` (buttons and highlights only) · ink `#2B2B2B` (body text) · muted `#5C584F` (AA-safe secondary text)
+- **Colours** (matching the real Benoquik pack):
+  - blue `#1F5CA8`: buttons, links, icons and focus rings
+  - blue-dark `#163F78`: hover states and the footer
+  - navy `#14213D`: headings and text
+  - red `#D2232A`: **logo and small accents only**
+  - white `#FFFFFF`: background
+  - sky `#EEF4FB`: soft sections and cards
+  - line `#D6E2F0`: borders
+  - muted `#5B6B82`: secondary text
+
+  Every text/background pair passes WCAG AA.
+- **Breakpoints:** phones below 600 px (one product per row), tablets 600–1023 px (two per row, hamburger menu), desktop 1024 px and up (three per row)
 - **Radius:** 12 / 16 / 24 px, with pill buttons and an automatic → arrow (add the class `no-arrow` to hide it)
 - **Motion:** fade-up on scroll, lift on hover and a slow marquee with a pause button. Everything switches off when the visitor's device asks for reduced motion.
 

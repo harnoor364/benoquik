@@ -6,6 +6,7 @@
  *   wp benoquik fix-encoding        # repair â€” / Ã— style characters
  *   wp benoquik repair-products     # pack sizes, prices, subtitles, info, reviews off
  *   wp benoquik rebuild-home        # rebuild the Home page from the theme's sections
+ *   wp benoquik migrate-v030        # real product: 20 g packs, names, images, SKUs
  *   wp benoquik upgrade             # all of the above + cache/lookup-table flush
  *
  * Or from WordPress admin -> Benoquik -> Repair store data.
@@ -59,6 +60,8 @@ class Repair {
 	public static function upgrade( $rebuild_home = true ) {
 		$log = array( '== Encoding ==' );
 		$log = array_merge( $log, self::fix_encoding() );
+		$log[] = '== Real product (v0.3.0) ==';
+		$log = array_merge( $log, Catalogue::apply( false ) );
 		$log[] = '== Products ==';
 		$log = array_merge( $log, self::repair_products() );
 		if ( $rebuild_home ) {
@@ -132,7 +135,7 @@ class Repair {
 			}
 			$name = $product->get_name();
 
-			// Pack size belongs in the subtitle, not the title ("Name — 30 g").
+			// Pack size belongs in the subtitle, not the title ("Name — pack size").
 			if ( '' === (string) get_post_meta( $id, '_bq_subtitle', true ) && preg_match( '/^(.+?)\s+[—–-]\s+(.+)$/u', $name, $m ) ) {
 				$product->set_name( trim( $m[1] ) );
 				$product->update_meta_data( '_bq_subtitle', trim( $m[2] ) );
@@ -238,6 +241,12 @@ class Repair {
 			$product->set_default_attributes( $defaults );
 		}
 		$log[] = sprintf( '#%d: %d variation(s) OK', $id, count( $product->get_children() ) );
+		return $log;
+	}
+
+	public static function migrate_v030() {
+		$log = Catalogue::apply( false );
+		$log = array_merge( $log, self::flush() );
 		return $log;
 	}
 

@@ -160,10 +160,10 @@ def leaf(name, w, h, bg_top, bg_bottom, leaf_color):
 
 
 def sun(name, w, h):
-    img = gradient(w, h, (246, 226, 190), (232, 196, 150))
+    img = gradient(w, h, (226, 238, 252), (196, 218, 244))
     layer = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(layer)
-    d.ellipse([w * 0.55, h * 0.08, w * 0.95, h * 0.08 + w * 0.4], fill=(255, 246, 220, 230))
+    d.ellipse([w * 0.55, h * 0.08, w * 0.95, h * 0.08 + w * 0.4], fill=(255, 252, 236, 230))
     layer = layer.filter(ImageFilter.GaussianBlur(40))
     img = Image.alpha_composite(img.convert("RGBA"), layer).convert("RGB")
     d = ImageDraw.Draw(img)
@@ -171,10 +171,10 @@ def sun(name, w, h):
     bw, bh = w * 0.22, h * 0.5
     x, y = w * 0.28, h * 0.92
     d.rounded_rectangle([x - bw / 2, y - bh, x + bw / 2, y], radius=int(bw * 0.25), fill=(250, 248, 243))
-    d.rounded_rectangle([x - bw * 0.18, y - bh - bh * 0.14, x + bw * 0.18, y - bh + 6], radius=8, fill=(35, 40, 31))
+    d.rounded_rectangle([x - bw * 0.18, y - bh - bh * 0.14, x + bw * 0.18, y - bh + 6], radius=8, fill=(31, 92, 168))
     f = ImageFont.truetype(INTER, int(bw * 0.17))
     f.set_variation_by_axes([700])
-    d.text((x, y - bh * 0.5), "SPF 50", font=f, fill=(35, 40, 31), anchor="mm")
+    d.text((x, y - bh * 0.5), "SPF 50", font=f, fill=(20, 33, 61), anchor="mm")
     save(grain(img), name)
 
 
@@ -208,23 +208,6 @@ def portrait(name, w, h, bg, tone, wrap=None):
     img = pores(img, density=0.0004, dark=lerp(tone, (0, 0, 0), 0.4))
     save(grain(img), name)
 
-
-# --- Products (square, light tile) ---
-product("product-30g", 1, "20% w/w")
-product("product-2pack", 2, "20% w/w")
-product("product-3month", 3, "20% w/w")
-
-# --- Hero & large backgrounds ---
-skin("hero", 2000, 1250, (196, 140, 104), (150, 98, 70), [(214, 165, 128), (170, 112, 82), (226, 182, 150), (130, 84, 60)])
-skin("cta", 1800, 900, (204, 160, 128), (168, 118, 90), [(230, 196, 168), (186, 134, 104), (150, 100, 76)])
-skin("split", 1000, 1250, (226, 204, 182), (200, 172, 146), [(240, 226, 210), (210, 182, 158)])
-
-# --- Bento tiles ---
-skin("bento-patch", 1200, 800, (232, 212, 190), (214, 186, 160), [(246, 232, 216), (220, 196, 172)])
-fabric("bento-layer", 800, 800, (240, 226, 204), (226, 204, 176))
-leaf("bento-time", 800, 1000, (220, 230, 196), (196, 210, 166), (122, 142, 74))
-sun("bento-sun", 800, 800)
-leaf("bento-doctor", 1200, 800, (236, 232, 222), (222, 216, 202), (90, 110, 70))
 
 def hero_visual(name, w, h):
     """Warm, softly lit backdrop with the product tube - a placeholder for real photography."""
@@ -260,10 +243,21 @@ def abstract(name, w, h, palette, seed):
     save(grain(img), name)
 
 
-hero_visual("hero-visual", 960, 1200)
+# --- Cool blue palette (v0.3.0). Product photos come from tools/product_images.py ---
+NAVY_T, NAVY_B = (34, 62, 110), (20, 33, 61)
+skin("hero", 2000, 1250, NAVY_T, NAVY_B, [(48, 88, 150), (31, 92, 168), (60, 104, 168), (22, 50, 96)])
+skin("cta", 1800, 900, (40, 80, 140), (22, 48, 92), [(60, 110, 180), (31, 92, 168), (28, 58, 110)])
+skin("split", 1000, 1250, (228, 237, 248), (206, 222, 240), [(244, 248, 253), (214, 228, 244)])
+
+# --- Bento tiles ---
+skin("bento-patch", 1200, 800, (220, 232, 246), (196, 214, 236), [(238, 244, 251), (206, 222, 240)])
+fabric("bento-layer", 800, 800, (232, 240, 250), (210, 224, 242))
+leaf("bento-time", 800, 1000, (226, 236, 248), (204, 220, 240), (60, 104, 168))
+sun("bento-sun", 800, 800)
+leaf("bento-doctor", 1200, 800, (236, 242, 250), (214, 226, 242), (31, 92, 168))
 
 # --- Patient story placeholders: abstract textures, NO faces ---
-abstract("story-1", 600, 800, [(232, 222, 206), (214, 200, 180), (244, 236, 224), (206, 188, 164)], 11)
-abstract("story-2", 1200, 800, [(206, 196, 176), (176, 162, 140), (226, 216, 198), (160, 146, 124), (138, 130, 115)], 12)
-abstract("story-3", 600, 800, [(220, 226, 206), (198, 208, 182), (236, 240, 226), (178, 190, 160)], 13)
-abstract("story-4", 600, 800, [(238, 226, 214), (220, 202, 186), (248, 240, 232), (206, 182, 166)], 14)
+abstract("story-1", 600, 800, [(230, 238, 248), (208, 222, 240), (244, 248, 253), (196, 212, 234)], 11)
+abstract("story-2", 1200, 800, [(120, 150, 196), (60, 92, 146), (150, 176, 214), (44, 74, 126), (34, 56, 100)], 12)
+abstract("story-3", 600, 800, [(224, 234, 246), (200, 216, 236), (240, 245, 252), (186, 204, 230)], 13)
+abstract("story-4", 600, 800, [(236, 241, 249), (214, 226, 242), (248, 250, 254), (204, 218, 238)], 14)

@@ -137,6 +137,9 @@
 		}
 		var btn = bar.querySelector( 'button' );
 		var price = bar.querySelector( '.bq-sticky-cart__price' );
+		var pack = bar.querySelector( '.bq-sticky-cart__pack' );
+		var pastButton = false;
+		var footerVisible = false;
 		function setVisible( on ) {
 			bar.classList.toggle( 'is-visible', on );
 			if ( on ) {
@@ -148,11 +151,19 @@
 			}
 		}
 		if ( 'IntersectionObserver' in window ) {
+			// Show once the real button has scrolled up out of view; hide again near the footer.
 			new IntersectionObserver( function ( entries ) {
 				var e = entries[ 0 ];
-				// Show only once the real button has scrolled up out of view.
-				setVisible( ! e.isIntersecting && e.boundingClientRect.top < 0 );
+				pastButton = ! e.isIntersecting && e.boundingClientRect.top < 0;
+				setVisible( pastButton && ! footerVisible );
 			} ).observe( main );
+			var footer = document.querySelector( '.site-footer' );
+			if ( footer ) {
+				new IntersectionObserver( function ( entries ) {
+					footerVisible = entries[ 0 ].isIntersecting;
+					setVisible( pastButton && ! footerVisible );
+				} ).observe( footer );
+			}
 		}
 		btn.addEventListener( 'click', function () {
 			var disabled = main.disabled || main.classList.contains( 'disabled' );
@@ -170,6 +181,10 @@
 			$( 'form.variations_form' ).on( 'found_variation', function ( e, variation ) {
 				if ( variation && variation.price_html ) {
 					price.innerHTML = variation.price_html;
+				}
+				if ( pack && variation && variation.attributes ) {
+					var vals = Object.keys( variation.attributes ).map( function ( k ) { return variation.attributes[ k ]; } ).filter( Boolean );
+					pack.textContent = vals.length ? ' · ' + vals.join( ', ' ) : '';
 				}
 			} );
 		}

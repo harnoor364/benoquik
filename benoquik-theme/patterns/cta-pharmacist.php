@@ -9,8 +9,8 @@
  */
 ?>
 <!-- wp:group {"align":"full","className":"bq-section bq-cta-wrap","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained","contentSize":"1240px"}} -->
-<div class="wp-block-group alignfull bq-section bq-cta-wrap" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)"><!-- wp:cover {"url":"<?php echo benoquik_img( 'cta.webp' ); ?>","alt":"","dimRatio":50,"overlayColor":"olive","minHeight":460,"className":"bq-cta bq-reveal","layout":{"type":"constrained","contentSize":"640px"}} -->
-<div class="wp-block-cover bq-cta bq-reveal" style="min-height:460px"><span aria-hidden="true" class="wp-block-cover__background has-olive-background-color has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo benoquik_img( 'cta.webp' ); ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:heading {"textAlign":"center","textColor":"white","fontSize":"huge"} -->
+<div class="wp-block-group alignfull bq-section bq-cta-wrap" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)"><!-- wp:cover {"url":"<?php echo benoquik_img( 'cta.webp' ); ?>","alt":"","dimRatio":50,"overlayColor":"navy","minHeight":460,"className":"bq-cta bq-reveal","layout":{"type":"constrained","contentSize":"640px"}} -->
+<div class="wp-block-cover bq-cta bq-reveal" style="min-height:460px"><span aria-hidden="true" class="wp-block-cover__background has-navy-background-color has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo benoquik_img( 'cta.webp' ); ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:heading {"textAlign":"center","textColor":"white","fontSize":"huge"} -->
 <h2 class="wp-block-heading has-text-align-center has-white-color has-text-color has-huge-font-size">Start your treatment with confidence</h2>
 <!-- /wp:heading -->
 

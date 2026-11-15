@@ -14,6 +14,9 @@ Nothing has been removed. Tick each item as you replace it.
 | ☐ | GSTIN | `00AAAAA0000A0Z0 (placeholder)` | **Benoquik → Settings → GSTIN** |
 | ☐ | Registered pharmacist name | `Pharmacist Name (placeholder)` | **Benoquik → Settings → Registered pharmacist** |
 | ☐ | Pharmacist registration no. | `Reg. No. 00000 (placeholder)` | **Benoquik → Settings → Pharmacist registration no.** |
+| ☐ | Quik Pharmaceuticals address (marketer, from the pack) | `Address (placeholder)` | **Benoquik → Settings → Marketer address** (shown on product pages) |
+| ☐ | Quik Pharmaceuticals manufacturing/marketing licence no. (from the pack) | `Mfg. Lic. No. (placeholder)` | **Benoquik → Settings → Manufacturer / marketer licence no.** |
+| ☐ | "Marketed by" name | `Quik Pharmaceuticals` (already the real name; just confirm it) | **Benoquik → Settings → Product marketed by** |
 
 ## 2. Contact details
 
@@ -56,23 +59,38 @@ Replace each image with licensed photography. To replace one: click the image in
 
 | ✓ | Image | Where it appears | Where to edit |
 |---|---|---|---|
-| ☐ | Hero background (warm texture) | Homepage hero, behind the text | **Pages → Home → Edit**: click the hero background → *Replace* |
-| ☐ | Hero image (tube on beige) | Homepage hero, right side | **Pages → Home → Edit**: click the image → *Replace* |
-| ☐ | Hero card thumbnail | Floating "Benoquik 20% Cream" card | Same place |
+| ☐ | Hero background (abstract navy texture) | Homepage hero, behind the text | **Pages → Home → Edit**: click the hero background → *Replace* |
+| ✓ | Hero image | Homepage hero, right side | Now the **real Benoquik pack photo** on a light-blue tile. To change it: **Pages → Home → Edit** → click the image → *Replace* |
+| ✓ | Hero card thumbnail | Floating "Benoquik Cream 20 g" card | Real pack photo (same place) |
 | ☐ | "Prescribed and supervised" image | Homepage split section | **Pages → Home → Edit** |
 | ☐ | 5 "How Benoquik works" tile images | Homepage bento grid | **Pages → Home → Edit**: click a tile → *Replace* in the toolbar |
 | ☐ | 4 patient-story images | Homepage patient stories | **Pages → Home → Edit** |
 | ☐ | "Start your treatment" background | Homepage CTA | **Pages → Home → Edit** |
-| ☐ | 3 product images | Shop, product pages, homepage cards | **Products → (product) → Edit → Product image** (right sidebar) |
+| ✓ | 3 product images | Shop, product pages, homepage cards | Now the **real pack photo** (the 2-Pack and 3-Pack use the same photo with a "2 × 20 g" / "3 × 20 g" badge). For proper multi-pack photos: **Products → (product) → Edit → Product image** |
 
 ## 6. Products & prices
 
 | ✓ | Item | Current placeholder | Where to edit |
 |---|---|---|---|
-| ☐ | Selling prices and MRPs (6 variations) | ₹649 / ₹749, ₹1,249 / ₹1,498, ₹1,649 / ₹1,948, ₹1,799 / ₹2,247, ₹2,199 / ₹2,697 | **Products → (product) → Edit → Product data → Variations**. *Regular price* = MRP, *Sale price* = selling price |
-| ☐ | Pack sizes and bundles | "1 tube / 2 tubes", "Cream only / With SPF 50 sunscreen" | **Product data → Attributes** and **Variations** |
-| ☐ | SKUs | Auto-generated (`BQ-…`) | **Product data → Inventory** |
-| ☐ | Subtitles | "30 g", "2 × 30 g", "3 × 30 g" | **Product data → General → Subtitle (pack size)** |
+**All prices below are PLACEHOLDER PRICES.** Each product also has an admin-only note saying so
+(**Product data → General → Internal note**). It's never shown to customers.
+
+| ✓ | Product | Variation | SKU | Selling price / MRP (placeholder) |
+|---|---|---|---|---|
+| ☐ | Benoquik Cream 20 g | 1 tube (20 g) | BQ-20G-1 | ₹649 / ₹749 |
+| ☐ | Benoquik Cream 20 g | 2 tubes (2 × 20 g) | BQ-20G-2 | ₹1,249 / ₹1,498 |
+| ☐ | Benoquik 2-Pack | Cream only | BQ-20G-X2-C | ₹1,249 / ₹1,498 |
+| ☐ | Benoquik 2-Pack | With SPF 50 sunscreen | BQ-20G-X2-SPF | ₹1,649 / ₹1,948 |
+| ☐ | Benoquik 3-Pack | Cream only | BQ-20G-X3-C | ₹1,799 / ₹2,247 |
+| ☐ | Benoquik 3-Pack | With SPF 50 sunscreen | BQ-20G-X3-SPF | ₹2,199 / ₹2,697 |
+
+Edit prices in **Products → (product) → Edit → Product data → Variations** (*Regular price* = MRP, *Sale price* = selling price).
+Confirm the "With SPF 50 sunscreen" bundles are something you actually sell, or delete those variations.
+
+| ✓ | Item | Current value | Where to edit |
+|---|---|---|---|
+| ☐ | Subtitles | "Monobenzone Cream USP 20% w/w · 1 tube (20 g)" / "· 2 × 20 g tubes" / "· 3 × 20 g tubes" | **Product data → General → Subtitle (pack size)** |
+| ☐ | SKUs | `BQ-20G`, `BQ-20G-X2`, `BQ-20G-X3` (+ variation suffixes) | **Product data → Inventory** (replace with your own if you have them) |
 | ☐ | Medicine information (Overview, How to use, Side effects, Safety advice, Storage, FAQs) | General default text | **Product data → Medicine information**. Have your pharmacist / medical advisor review it |
 | ☐ | Short description | Generic text | **Products → Edit → Product short description** (below the main editor) |
 

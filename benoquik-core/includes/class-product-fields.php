@@ -72,9 +72,17 @@ class Product_Fields {
 			array(
 				'id'          => '_bq_subtitle',
 				'label'       => __( 'Subtitle (pack size)', 'benoquik-core' ),
-				'placeholder' => __( 'e.g. 30 g tube · Monobenzone 20% w/w', 'benoquik-core' ),
+				'placeholder' => __( 'e.g. Monobenzone Cream USP 20% w/w · 1 tube (20 g)', 'benoquik-core' ),
 				'desc_tip'    => true,
 				'description' => __( 'Shown under the product name. Keep the pack size here, not in the product name.', 'benoquik-core' ),
+			)
+		);
+		woocommerce_wp_textarea_input(
+			array(
+				'id'          => '_bq_admin_note',
+				'label'       => __( 'Internal note (admin only)', 'benoquik-core' ),
+				'description' => __( 'Never shown to customers.', 'benoquik-core' ),
+				'desc_tip'    => true,
 			)
 		);
 		echo '</div>';
@@ -112,6 +120,9 @@ class Product_Fields {
 	public static function save( $product ) {
 		// phpcs:disable WordPress.Security.NonceVerification -- WooCommerce verifies the product save nonce.
 		$product->update_meta_data( '_bq_requires_prescription', isset( $_POST['_bq_requires_prescription'] ) ? 'yes' : 'no' );
+		if ( isset( $_POST['_bq_admin_note'] ) ) {
+			$product->update_meta_data( '_bq_admin_note', sanitize_textarea_field( wp_unslash( $_POST['_bq_admin_note'] ) ) );
+		}
 		if ( isset( $_POST['_bq_subtitle'] ) ) {
 			$product->update_meta_data( '_bq_subtitle', sanitize_text_field( wp_unslash( $_POST['_bq_subtitle'] ) ) );
 		}
@@ -143,7 +154,7 @@ class Product_Fields {
 	 */
 	public static function default_info() {
 		return array(
-			'_bq_info_overview'     => '<p>Benoquik contains <strong>monobenzone 20% w/w</strong>, a prescription depigmenting cream for people with <strong>extensive vitiligo</strong> (where most of the skin has already lost its colour). It permanently removes the remaining pigment from normally pigmented skin so that skin tone becomes even.</p><p><strong>It is not a cure for vitiligo and does not restore colour.</strong> The effect is permanent. Use only under the supervision of a dermatologist. It is not for cosmetic skin lightening, freckles, melasma or any other pigmentation condition.</p>',
+			'_bq_info_overview'     => '<p><strong>Benoquik®</strong> is <strong>Monobenzone Cream USP 20% w/w</strong>, supplied in a 20 g tube and marketed by Quik Pharmaceuticals. It is a prescription depigmenting cream for people with <strong>extensive vitiligo</strong> (where most of the skin has already lost its colour). It permanently removes the remaining pigment from normally pigmented skin so that skin tone becomes even.</p><p><strong>It is not a cure for vitiligo and does not restore colour.</strong> The effect is permanent. Use only under the supervision of a dermatologist. It is not for cosmetic skin lightening, freckles, melasma or any other pigmentation condition.</p>',
 			'_bq_info_how_to_use'   => '<ul><li><strong>Patch test first</strong> on a small area for about 7 days, as your doctor directs, and check for redness, itching or swelling.</li><li>Apply a <strong>thin layer</strong> only to the areas your doctor has prescribed, as often as prescribed.</li><li><strong>Avoid the eyes</strong>, mouth and inside of the nose.</li><li><strong>Wash your hands</strong> straight after applying.</li><li>Let the cream absorb before treated skin touches other people’s skin — it can lighten their skin too.</li><li>Do not apply to broken, sunburnt or irritated skin.</li></ul>',
 			'_bq_info_side_effects' => '<p>Possible side effects include redness, burning, itching, dryness or a rash where the cream is applied. Monobenzone can also lighten skin that was <strong>not</strong> treated, including areas away from where you applied it.</p><p><strong>Stop using Benoquik and see your doctor</strong> if you notice marked irritation, swelling or blistering.</p>',
 			'_bq_info_safety'       => '<ul><li><strong>Pregnancy:</strong> talk to your doctor before using Benoquik if you are pregnant or planning a pregnancy.</li><li><strong>Breastfeeding:</strong> talk to your doctor before use, and avoid applying where a baby’s skin could touch treated skin.</li><li><strong>Sun exposure:</strong> depigmented skin has little natural protection and burns easily. Use a broad-spectrum sunscreen every day, wear protective clothing and avoid strong midday sun.</li><li>Not for use in children unless a doctor specifically prescribes it.</li><li>Depigmentation is permanent — make the decision together with your dermatologist.</li></ul>',

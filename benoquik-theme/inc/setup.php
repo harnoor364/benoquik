@@ -38,6 +38,19 @@ add_action(
 				'strategy'  => 'defer',
 			)
 		);
+		// Checkout-only helper (numeric keypads / autocomplete); not loaded anywhere else.
+		if ( function_exists( 'is_checkout' ) && is_checkout() ) {
+			wp_enqueue_script(
+				'benoquik-checkout',
+				get_theme_file_uri( 'assets/js/checkout.js' ),
+				array(),
+				BENOQUIK_THEME_VERSION,
+				array(
+					'in_footer' => true,
+					'strategy'  => 'defer',
+				)
+			);
+		}
 	}
 );
 

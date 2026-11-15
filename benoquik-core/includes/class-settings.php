@@ -31,7 +31,7 @@ class Settings {
 				'fields' => array(
 					'announcement_text' => array( __( 'Announcement bar text', 'benoquik-core' ), 'text', '℞ Prescription required · Free delivery above ₹999 · Pan-India shipping', __( 'Shown above the header on every page. Leave empty to hide.', 'benoquik-core' ) ),
 					'announcement_link' => array( __( 'Announcement bar link (optional)', 'benoquik-core' ), 'url', '', '' ),
-					'marquee_items'     => array( __( 'Marquee items (one per line)', 'benoquik-core' ), 'textarea', "Free delivery above ₹999\nPrescription required\nGenuine product\nPan-India shipping", __( 'The lime scrolling strip on the homepage.', 'benoquik-core' ) ),
+					'marquee_items'     => array( __( 'Marquee items (one per line)', 'benoquik-core' ), 'textarea', "Free delivery above ₹999\nPrescription required\nGenuine product\nPan-India shipping", __( 'The blue scrolling strip on the homepage.', 'benoquik-core' ) ),
 				),
 			),
 			'product'    => array(
@@ -45,7 +45,10 @@ class Settings {
 			'compliance' => array(
 				'title'  => __( 'Licences & compliance (shown in the footer)', 'benoquik-core' ),
 				'fields' => array(
-					'legal_name'      => array( __( 'Registered business name', 'benoquik-core' ), 'text', 'Benoquik Pharmacy Pvt. Ltd. (placeholder)', '' ),
+					'legal_name'      => array( __( 'Registered business name (your pharmacy)', 'benoquik-core' ), 'text', 'Benoquik Pharmacy Pvt. Ltd. (placeholder)', '' ),
+					'marketed_by'     => array( __( 'Product marketed by', 'benoquik-core' ), 'text', 'Quik Pharmaceuticals', __( 'Shown on product pages and in the footer as "Marketed by …".', 'benoquik-core' ) ),
+					'marketer_address' => array( __( 'Marketer address', 'benoquik-core' ), 'text', 'Address (placeholder)', __( 'From the pack. Shown on product pages.', 'benoquik-core' ) ),
+					'marketer_licence' => array( __( 'Manufacturer / marketer licence no.', 'benoquik-core' ), 'text', 'Mfg. Lic. No. (placeholder)', __( 'From the pack. Shown on product pages.', 'benoquik-core' ) ),
 					'drug_licence'    => array( __( 'Drug licence no.', 'benoquik-core' ), 'text', 'DL-XX-000000 (placeholder)', '' ),
 					'gst_number'      => array( __( 'GSTIN', 'benoquik-core' ), 'text', '00AAAAA0000A0Z0 (placeholder)', '' ),
 					'pharmacist_name' => array( __( 'Registered pharmacist', 'benoquik-core' ), 'text', 'Pharmacist Name (placeholder)', '' ),

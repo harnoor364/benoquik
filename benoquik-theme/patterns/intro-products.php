@@ -23,7 +23,7 @@
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:woocommerce/product-collection {"queryId":11,"query":{"perPage":3,"pages":1,"offset":0,"postType":"product","order":"asc","orderBy":"menu_order","search":"","exclude":[],"inherit":false,"taxQuery":[],"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock","outofstock","onbackorder"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false,"relatedBy":{"categories":true,"tags":true}},"tagName":"div","displayLayout":{"type":"flex","columns":3,"shrinkColumns":true},"dimensions":{"widthType":"fill"},"queryContextIncludes":["collection"],"className":"bq-products bq-reveal"} -->
+<!-- wp:woocommerce/product-collection {"queryId":11,"query":{"perPage":3,"pages":1,"offset":0,"postType":"product","order":"asc","orderBy":"menu_order","search":"","exclude":[],"inherit":false,"taxQuery":[],"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock","outofstock","onbackorder"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false,"relatedBy":{"categories":true,"tags":true}},"tagName":"div","displayLayout":{"type":"flex","columns":3,"shrinkColumns":false},"dimensions":{"widthType":"fill"},"queryContextIncludes":["collection"],"className":"bq-products bq-reveal"} -->
 <div class="wp-block-woocommerce-product-collection bq-products bq-reveal"><!-- wp:woocommerce/product-template -->
 <!-- wp:group {"className":"bq-product-card__media","layout":{"type":"default"}} -->
 <div class="wp-block-group bq-product-card__media"><!-- wp:woocommerce/product-image {"showSaleBadge":false,"isDescendentOfQueryLoop":true,"aspectRatio":"1"} /-->

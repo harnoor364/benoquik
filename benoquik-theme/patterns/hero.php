@@ -42,25 +42,25 @@
 
 <!-- wp:column {"verticalAlignment":"bottom","width":"42%","className":"bq-hero__visual"} -->
 <div class="wp-block-column is-vertically-aligned-bottom bq-hero__visual" style="flex-basis:42%"><!-- wp:image {"aspectRatio":"4/5","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"bq-hero__image"} -->
-<figure class="wp-block-image size-large bq-hero__image"><img src="<?php echo benoquik_img( 'hero-visual.webp' ); ?>" alt="Benoquik 20% cream tube (placeholder image — replace with product photography)" style="aspect-ratio:4/5;object-fit:cover"/></figure>
+<figure class="wp-block-image size-large bq-hero__image"><img src="<?php echo benoquik_img( 'hero-visual.webp' ); ?>" alt="Benoquik Monobenzone Cream USP 20% — 20 g tube and box" style="aspect-ratio:4/5;object-fit:cover"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:group {"className":"bq-hero-card is-style-card","layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group bq-hero-card is-style-card"><!-- wp:image {"width":"76px","height":"76px","scale":"cover","sizeSlug":"thumbnail","linkDestination":"none"} -->
-<figure class="wp-block-image size-thumbnail is-resized"><img src="<?php echo benoquik_img( 'product-30g.webp' ); ?>" alt="Benoquik 20% cream tube (placeholder image)" style="object-fit:cover;width:76px;height:76px"/></figure>
+<figure class="wp-block-image size-thumbnail is-resized"><img src="<?php echo benoquik_img( 'benoquik-20g.webp' ); ?>" alt="Benoquik Monobenzone Cream USP 20% — 20 g tube and box" style="object-fit:cover;width:76px;height:76px"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0.2rem"}},"layout":{"type":"default"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size"><strong>Benoquik 20% Cream</strong></p>
+<p class="has-small-font-size"><strong>Benoquik Cream 20 g</strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"textColor":"muted","fontSize":"x-small"} -->
-<p class="has-muted-color has-text-color has-x-small-font-size">Monobenzone · 30 g · Rx only</p>
+<p class="has-muted-color has-text-color has-x-small-font-size">Monobenzone Cream USP 20% · ℞ only</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"bq-link-arrow","fontSize":"x-small"} -->
-<p class="bq-link-arrow has-x-small-font-size"><a href="/shop/benoquik-cream-30g/">View product</a></p>
+<p class="bq-link-arrow has-x-small-font-size"><a href="/shop/benoquik-cream-20g/">View product</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

@@ -21,6 +21,7 @@
 		'benoquik/rx-notice': { title: 'Benoquik: Prescription notice', icon: 'shield-alt', usesContext: [ 'postId', 'postType' ] },
 		'benoquik/delivery-estimate': { title: 'Benoquik: Delivery estimate', icon: 'car', usesContext: [ 'postId', 'postType' ] },
 		'benoquik/product-info': { title: 'Benoquik: Medicine information accordions', icon: 'list-view', usesContext: [ 'postId', 'postType' ] },
+		'benoquik/marketed-by': { title: 'Benoquik: Marketed by', icon: 'building' },
 		'benoquik/sticky-cart': { title: 'Benoquik: Sticky add-to-cart (mobile)', icon: 'cart', usesContext: [ 'postId', 'postType' ] }
 	};
 

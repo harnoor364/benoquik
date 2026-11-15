@@ -67,7 +67,7 @@ class Blocks {
 		register_block_type( 'benoquik/subscribe', $common + array( 'render_callback' => array( Subscribers::class, 'render_form' ) ) );
 	}
 
-	/** Lime scrolling strip. Text: Settings -> "Marquee items". */
+	/** Blue scrolling strip. Text: Settings -> "Marquee items". */
 	public static function marquee( $attrs ) {
 		$items = array_filter( array_map( 'trim', explode( "\n", (string) Settings::get( 'marquee_items' ) ) ) );
 		if ( ! $items ) {
@@ -121,6 +121,9 @@ class Blocks {
 		$pharm = trim( Settings::get( 'pharmacist_name' ) . ( Settings::get( 'pharmacist_reg' ) ? ' · ' . Settings::get( 'pharmacist_reg' ) : '' ) );
 		if ( $pharm ) {
 			$parts[] = '<span>' . esc_html__( 'Registered pharmacist:', 'benoquik-core' ) . ' ' . esc_html( $pharm ) . '</span>';
+		}
+		if ( Settings::get( 'marketed_by' ) ) {
+			$parts[] = '<span>' . esc_html__( 'Benoquik® is marketed by', 'benoquik-core' ) . ' ' . esc_html( Settings::get( 'marketed_by' ) ) . '</span>';
 		}
 		$privacy = get_privacy_policy_url() ? get_privacy_policy_url() : home_url( '/privacy-policy/' );
 		$parts[] = '<a href="' . esc_url( $privacy ) . '">' . esc_html__( 'Privacy policy', 'benoquik-core' ) . '</a>';

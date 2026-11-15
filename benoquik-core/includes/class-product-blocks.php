@@ -47,6 +47,7 @@ class Product_Blocks {
 		register_block_type( 'benoquik/rx-notice', $common + array( 'render_callback' => array( __CLASS__, 'rx_notice' ) ) );
 		register_block_type( 'benoquik/delivery-estimate', $common + array( 'render_callback' => array( __CLASS__, 'delivery' ) ) );
 		register_block_type( 'benoquik/product-info', $common + array( 'render_callback' => array( __CLASS__, 'info' ) ) );
+		register_block_type( 'benoquik/marketed-by', $common + array( 'render_callback' => array( __CLASS__, 'marketed_by' ) ) );
 		register_block_type( 'benoquik/sticky-cart', $common + array( 'render_callback' => array( __CLASS__, 'sticky' ) ) );
 	}
 
@@ -140,13 +141,22 @@ class Product_Blocks {
 		return $out ? '<div class="wp-block-benoquik-product-info bq-product-info bq-accordion">' . $out . '</div>' : '';
 	}
 
+	public static function marketed_by() {
+		$by = Settings::get( 'marketed_by' );
+		if ( ! $by ) {
+			return '';
+		}
+		$extra = array_filter( array( Settings::get( 'marketer_address' ), Settings::get( 'marketer_licence' ) ) );
+		return '<p class="wp-block-benoquik-marketed-by bq-marketed-by">' . esc_html__( 'Marketed by', 'benoquik-core' ) . ' <strong>' . esc_html( $by ) . '</strong>' . ( $extra ? '<br><span>' . esc_html( implode( ' · ', $extra ) ) . '</span>' : '' ) . '</p>';
+	}
+
 	public static function sticky( $attrs, $content, $block ) {
 		$p = self::product( $block );
 		if ( ! $p || ! $p->is_purchasable() ) {
 			return '';
 		}
 		return sprintf(
-			'<div class="wp-block-benoquik-sticky-cart bq-sticky-cart" aria-hidden="true" inert><div class="bq-sticky-cart__info"><span class="bq-sticky-cart__name">%1$s</span><span class="bq-sticky-cart__price">%2$s</span></div><button type="button" class="bq-sticky-cart__button">%3$s</button></div>',
+			'<div class="wp-block-benoquik-sticky-cart bq-sticky-cart" aria-hidden="true" inert><div class="bq-sticky-cart__info"><span class="bq-sticky-cart__name">%1$s<span class="bq-sticky-cart__pack"></span></span><span class="bq-sticky-cart__price">%2$s</span></div><button type="button" class="bq-sticky-cart__button">%3$s</button></div>',
 			esc_html( $p->get_name() ),
 			wp_kses_post( $p->get_price_html() ),
 			esc_html__( 'Add to cart', 'benoquik-core' )

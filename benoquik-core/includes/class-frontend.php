@@ -13,6 +13,7 @@ class Frontend {
 
 	public static function init() {
 		add_filter( 'render_block_core/button', array( __CLASS__, 'whatsapp_button' ), 10, 2 );
+		add_filter( 'render_block_core/navigation-link', array( __CLASS__, 'whatsapp_button' ), 10, 2 );
 		add_shortcode( 'benoquik_breadcrumbs', array( __CLASS__, 'breadcrumbs' ) );
 		add_shortcode( 'benoquik_whatsapp_url', array( __CLASS__, 'whatsapp_url' ) );
 	}
@@ -24,7 +25,7 @@ class Frontend {
 	}
 
 	/**
-	 * Any Button block with the CSS class "bq-whatsapp" links to the WhatsApp
+	 * Any Button or menu link with the CSS class "bq-whatsapp" links to the WhatsApp
 	 * number saved in Benoquik -> Settings (so it's changed in one place).
 	 */
 	public static function whatsapp_button( $html, $block ) {

@@ -25,15 +25,15 @@
 <p>Monobenzone 20% is a strong, permanent treatment. Your dermatologist decides whether it is right for you, which areas to treat and how often to review your progress. We dispense only against a valid prescription.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:group {"className":"bq-note","style":{"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"1.25rem","right":"1.25rem"}}},"backgroundColor":"sand","layout":{"type":"default"}} -->
-<div class="wp-block-group bq-note has-sand-background-color has-background" style="padding-top:1rem;padding-right:1.25rem;padding-bottom:1rem;padding-left:1.25rem"><!-- wp:paragraph {"fontSize":"small"} -->
+<!-- wp:group {"className":"bq-note","style":{"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"1.25rem","right":"1.25rem"}}},"backgroundColor":"sky","layout":{"type":"default"}} -->
+<div class="wp-block-group bq-note has-sky-background-color has-background" style="padding-top:1rem;padding-right:1.25rem;padding-bottom:1rem;padding-left:1.25rem"><!-- wp:paragraph {"fontSize":"small"} -->
 <p class="has-small-font-size"><strong>Important:</strong> Benoquik permanently removes pigment from normal skin. It is <strong>not a cure</strong> for vitiligo, does <strong>not restore colour</strong>, and is only for people with extensive vitiligo under a doctor’s supervision.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/learn/how-depigmentation-therapy-works/">Learn more</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/learn/how-depigmentation-therapy-works/">How depigmentation therapy works</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>

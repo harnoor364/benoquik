@@ -13,8 +13,8 @@
 <p class="has-text-align-center bq-quote__mark">“</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"align":"center","className":"bq-quote__text","textColor":"olive","fontSize":"x-large"} -->
-<p class="has-text-align-center bq-quote__text has-olive-color has-text-color has-x-large-font-size">Monobenzone is a serious, permanent treatment. For the right person — someone with extensive vitiligo who wants an even skin tone — it can be a considered choice, made together with their dermatologist and supported by careful sun protection.</p>
+<!-- wp:paragraph {"align":"center","className":"bq-quote__text","textColor":"navy","fontSize":"x-large"} -->
+<p class="has-text-align-center bq-quote__text has-navy-color has-text-color has-x-large-font-size">Monobenzone is a serious, permanent treatment. For the right person — someone with extensive vitiligo who wants an even skin tone — it can be a considered choice, made together with their dermatologist and supported by careful sun protection.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"align":"center","className":"bq-signature"} -->
