@@ -105,12 +105,12 @@ class Blocks {
 		return '<div class="wp-block-benoquik-announcement bq-announcement"><p>' . $text . '</p></div>';
 	}
 
-	/** Footer bottom row: licence, GST, pharmacist, privacy link, © year. */
+	/** Footer legal block (Indian entity): license, GSTIN, pharmacist, privacy link, © year. */
 	public static function compliance() {
 		$parts = array();
 		$map   = array(
-			'drug_licence' => __( 'Drug licence no.', 'benoquik-core' ),
-			'gst_number'   => __( 'GSTIN', 'benoquik-core' ),
+			'drug_licence' => __( 'Drug license no. (India)', 'benoquik-core' ),
+			'gst_number'   => __( 'GSTIN (India)', 'benoquik-core' ),
 		);
 		foreach ( $map as $key => $label ) {
 			$v = Settings::get( $key );
@@ -123,7 +123,10 @@ class Blocks {
 			$parts[] = '<span>' . esc_html__( 'Registered pharmacist:', 'benoquik-core' ) . ' ' . esc_html( $pharm ) . '</span>';
 		}
 		if ( Settings::get( 'marketed_by' ) ) {
-			$parts[] = '<span>' . esc_html__( 'Benoquik® is marketed by', 'benoquik-core' ) . ' ' . esc_html( Settings::get( 'marketed_by' ) ) . '</span>';
+			$parts[] = '<span>' . esc_html__( 'Benoquik® is marketed by', 'benoquik-core' ) . ' ' . esc_html( trim( Settings::get( 'marketed_by' ) . ', ' . Settings::get( 'marketer_address' ), ', ' ) ) . '</span>';
+		}
+		if ( Settings::get( 'legal_address' ) ) {
+			$parts[] = '<span>' . esc_html__( 'Registered office:', 'benoquik-core' ) . ' ' . esc_html( Settings::get( 'legal_address' ) ) . '</span>';
 		}
 		$privacy = get_privacy_policy_url() ? get_privacy_policy_url() : home_url( '/privacy-policy/' );
 		$parts[] = '<a href="' . esc_url( $privacy ) . '">' . esc_html__( 'Privacy policy', 'benoquik-core' ) . '</a>';

@@ -9,12 +9,12 @@
  */
 
 $benoquik_faqs = array(
-	array( 'Does Benoquik cure vitiligo?', 'No. Benoquik does not cure vitiligo and does not restore skin colour. It permanently removes the remaining pigment from normal skin so that the overall skin tone becomes even. It is meant only for people with extensive vitiligo, on a dermatologist’s advice.' ),
-	array( 'Is the depigmentation permanent?', 'Yes. Depigmentation with monobenzone is generally permanent and cannot be reliably reversed. That is why the decision should be made carefully, together with your dermatologist.' ),
-	array( 'Do I need a prescription?', 'Yes. Benoquik is a prescription medicine. Upload a valid prescription from a registered medical practitioner at checkout, or before ordering on our Upload Prescription page. Our pharmacist reviews it before your order is dispatched.' ),
-	array( 'How should I apply it?', 'Do a patch test first, as your doctor advises. Apply a thin layer only to the areas and as often as prescribed. Avoid the eyes and mouth, and wash your hands after applying. Benoquik can also lighten skin you did not treat, including skin touched by treated areas.' ),
+	array( 'Does Benoquik cure vitiligo?', 'No. Benoquik does not cure vitiligo and does not restore skin color. It permanently removes the remaining pigment from normal skin so that the overall skin tone becomes even. It is meant only for people with extensive vitiligo, on a dermatologist’s advice.' ),
+	array( 'Do you ship to my country?', 'We ship from India to most countries worldwide, with tracking and discreet packaging. Only countries we deliver to can be chosen at checkout — see our Shipping & Availability page.' ),
+	array( 'Will I pay customs duties?', 'Possibly. Prices are in US dollars and exclude any import duties, VAT or customs fees charged by your country. These are paid by the recipient on delivery.' ),
+	array( 'Is a prescription from my own doctor accepted?', 'Yes. Upload a valid prescription in English from a doctor licensed in your country (PDF, JPG or PNG) at checkout. Our pharmacist verifies every order before dispatch.' ),
+	array( 'How should I apply it?', 'Do a patch test first, as your doctor advises. Apply a thin layer only to the areas and as often as prescribed. Avoid the eyes and mouth, and wash your hands after applying. Benoquik can also lighten skin you did not treat.' ),
 	array( 'How do I protect my skin from the sun?', 'Depigmented skin has little natural protection and burns easily. Use a broad-spectrum sunscreen every day, wear protective clothing and avoid strong midday sun.' ),
-	array( 'Can I use it if I am pregnant or breastfeeding?', 'Talk to your doctor before using Benoquik if you are pregnant, planning a pregnancy or breastfeeding. Stop using it and see your doctor if you notice irritation, redness or swelling.' ),
 );
 ?>
 <!-- wp:group {"align":"full","className":"bq-section bq-faq","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained","contentSize":"1240px"}} -->

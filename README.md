@@ -1,8 +1,8 @@
 # Benoquik — WordPress block theme + store plugin
 
 A calm, editorial WooCommerce store for **Benoquik (monobenzone 20% w/w cream)**, a prescription
-depigmentation therapy for people with extensive vitiligo. Built for Indian patients and caregivers
-(prices in ₹, mobile-first).
+depigmentation therapy for people with extensive vitiligo. An **international** store: the company and
+pharmacy are in India, and it ships to customers worldwide (prices in USD, mobile-first).
 
 > **Status:** Step 1 of 4 is complete: the local preview, design system, header, footer and **homepage**.
 > Product page, cart/checkout styling, the prescription upload and review system, other pages, the blog
@@ -14,8 +14,8 @@ depigmentation therapy for people with extensive vitiligo. Built for Indian pati
 
 | Folder | What it is | Upload to |
 |---|---|---|
-| `benoquik-theme/` | The **design**: colours, fonts, header, footer, page templates, homepage sections (block patterns) | *Appearance → Themes → Add New → Upload* (as a .zip) |
-| `benoquik-core/` | The **business logic**: Settings page, WhatsApp/marquee/announcement/licence blocks, newsletter sign-ups, demo import (and, next, prescriptions) | *Plugins → Add New → Upload* (as a .zip) |
+| `benoquik-theme/` | The **design**: colors, fonts, header, footer, page templates, homepage sections (block patterns) | *Appearance → Themes → Add New → Upload* (as a .zip) |
+| `benoquik-core/` | The **business logic**: Settings page, WhatsApp/marquee/announcement/license blocks, international shipping & checkout rules, newsletter sign-ups, demo import (and, next, prescriptions) | *Plugins → Add New → Upload* (as a .zip) |
 | `docker-compose.yml`, `bin/setup.sh` | Local preview site on your own computer | — |
 | `tools/` | Script that generated the placeholder images | — |
 
@@ -58,6 +58,40 @@ and then repeat steps 3 and 4.
 
 ---
 
+## International store (theme 0.4.0 / plugin 0.5.0)
+
+The store sells in **USD** to customers outside India and ships from India.
+
+**To update an existing LocalWP site:**
+1. Back up the database:
+```bash
+wp db export ../backup-before-intl.sql
+```
+2. Replace the `benoquik` theme and `benoquik-core` plugin folders with the new ones.
+3. Run the international setup, which also rebuilds the homepage and clears caches:
+```bash
+wp benoquik migrate-intl
+```
+   No shell? Use **Benoquik → Repair store data → tick "Also rebuild the Home page" → Run repair**.
+
+**What `migrate-intl` sets:**
+- **Currency and prices:** USD (`$12.00`) with the new placeholder prices.
+- **Customers and units:** customer location by geolocation, grams and centimeters.
+- **Language and dates:** en-US, dates like `15 Nov 2026`, 24-hour times with time zone (`18:49 IST`).
+- **Payments:** Cash on Delivery off.
+- **Shipping:** five zones with flat rates and free shipping over $99.
+- **Content:** international policy pages, emails, and US spelling.
+
+**Always on (from the plugin):**
+- **Shipping countries:** all countries except those in **Benoquik → Settings → Countries we do not ship to** (India to start).
+- **Checkout requirements:** an international phone number is required, and every order needs both checkboxes:
+  the Terms box and *"I confirm this medicine may be legally imported into my country for personal use with a valid prescription."*
+  The server enforces both, and both are recorded on the order.
+- **Duties notice:** shown on the cart and checkout.
+- **Product page:** a country-based delivery estimate, plus "Ships from India · Tracked international delivery · Discreet packaging".
+- **Product data:** shipping details for each region are added to WooCommerce's own product markup (no duplicate schema).
+- **Razorpay warning:** an admin notice reminds you to enable Razorpay **International Payments** for USD.
+
 ## Checkout rules: login and Terms acceptance (plugin v0.4.0)
 
 The order of steps is always **log in or register (with Terms) → checkout form → tick Terms → Place Order → Razorpay popup**.
@@ -76,7 +110,7 @@ The Razorpay popup can never open for a logged-out customer, or without the Term
 - These settings are enforced by the plugin: guest checkout off, registration on the My account page on,
   Terms page = *Terms & Conditions*.
 
-## Updating an existing LocalWP site to v0.3.0 (new colours, real 20 g product, mobile)
+## Updating an existing LocalWP site to v0.3.0 (new colors, real 20 g product, mobile)
 
 In Local's site shell (right-click the site → **Open site shell**), from inside your site folder:
 
@@ -135,7 +169,7 @@ wp benoquik upgrade
    Add `--keep-home` if you've already edited your homepage and don't want it rebuilt.
    The last lines it prints must show `Rows containing "â€": 0` and `Rows containing "Ã": 0`, and
    `2 purchasable variation(s)` for each product.
-5. Turn on a payment method so checkout works: **WooCommerce → Settings → Payments → Cash on delivery → Enable**.
+5. Make sure Razorpay is active with **International Payments** enabled (see PLACEHOLDERS.md).
 
 To undo everything: `wp db import ../backup-before-fixes.sql`.
 
@@ -173,11 +207,11 @@ Benoquik theme and plugin, demo pages and products, and the database. Build it w
 5. **Appearance → Themes → Add New → Upload Theme →** choose `benoquik-theme.zip` **→ Install Now → Activate**.
 6. **Settings → Permalinks →** pick *Custom Structure* and enter `/learn/%postname%/`. In the
    *Product permalinks* section, choose *Shop base* (gives `/shop/product-name/`). Save.
-7. **WooCommerce → Settings → General:** set the store country to *India*, the currency to
-   *Indian rupee (₹)* and *Number of decimals* to `0`. Save.
+7. **WooCommerce → Settings → General:** keep the store address in India (for invoices). The currency, selling
+   countries and so on are set automatically by step 8 and **Benoquik → Repair store data**.
 8. **Benoquik → Import demo content → Import.** This creates the Home page, the placeholder pages and
    3 demo products, and sets Home as your front page.
-9. Visit the site. Change the WhatsApp number and licence details in **Benoquik → Settings**.
+9. Visit the site. Change the WhatsApp number and license details in **Benoquik → Settings**.
 
 ---
 
@@ -208,7 +242,7 @@ The homepage is a normal page: **Pages → Home → Edit**. Each section is a bl
 | Announcement bar above the header | **Benoquik → Settings → Announcement bar text** (leave empty to hide it) |
 | Lime marquee text | **Benoquik → Settings → Marquee items** |
 | WhatsApp number (every "Talk to a pharmacist" button) | **Benoquik → Settings → WhatsApp number** |
-| Drug licence, GSTIN, pharmacist name and registration no., company name | **Benoquik → Settings → Licences & compliance** |
+| Indian legal details (drug license, GSTIN, pharmacist, registered address) | **Benoquik → Settings → Company & legal details** |
 | Menu links (header and footer) | **Appearance → Editor → Navigation** (or *Patterns → Header/Footer*) |
 | Footer heading, disclaimer and big wordmark | **Appearance → Editor → Patterns → Footer** |
 | Colours and fonts | **Appearance → Editor → Styles** (preset to the brand palette) |
@@ -240,7 +274,7 @@ The homepage is a normal page: **Pages → Home → Edit**. Each section is a bl
 ## Medical and content rules followed
 
 - The homepage says clearly that monobenzone **permanently** removes pigment, is **not a cure** and
-  does **not restore colour**, and is only for **extensive vitiligo under a doctor's supervision**.
+  does **not restore color**, and is only for **extensive vitiligo under a doctor's supervision**.
 - No fairness, "glow", beauty or skin-lightening language. No before/after images, no "cure",
   "guaranteed" or "miracle", and no timed result promises.
 - Safety points included: patch test first, avoid the eyes, wash hands after applying, strict sun
@@ -248,7 +282,7 @@ The homepage is a normal page: **Pages → Home → Edit**. Each section is a bl
   and consult a doctor if pregnant or breastfeeding.
 - A medical disclaimer appears in the footer of every page.
 - **Placeholders:** all images (computer-generated stand-ins, no real people), testimonials, the
-  doctor's name, licence numbers and prices. Replace them before launch.
+  doctor's name, license numbers, prices and shipping rates. Replace them before launch.
 
 ## SEO
 
@@ -259,7 +293,7 @@ duplicated. Every page has exactly one H1. Permalinks are `/shop/product-name/` 
 
 ## Plugins to install (not bundled)
 
-WooCommerce · Rank Math SEO · Razorpay for WooCommerce (plus the built-in Cash on Delivery) · a
+WooCommerce · Rank Math SEO · Razorpay for WooCommerce (with **International Payments** enabled; Cash on Delivery is off for international orders) · a
 caching plugin (e.g. LiteSpeed Cache or WP Super Cache) · an image optimiser that creates WebP
 (e.g. EWWW or ShortPixel) · WP Mail SMTP · a security plugin (e.g. Wordfence or Solid Security) ·
 UpdraftPlus (backups).
@@ -269,13 +303,13 @@ Step-by-step setup for each comes with the full guide in step 4.
 
 ## Placeholders
 
-Every placeholder (names, licence numbers, GSTIN, pharmacist, grievance officer, testimonials,
+Every placeholder (names, license numbers, GSTIN, pharmacist, grievance officer, testimonials,
 images, prices) is listed in **[PLACEHOLDERS.md](PLACEHOLDERS.md)**, with where to edit each one.
 
 ## Roadmap
 
 1. ✅ **Local preview, design system, header, footer, homepage** (this step)
-2. ⏳ WooCommerce: product page (gallery and zoom, pack sizes, MRP strikethrough, ℞ notice, pincode
+2. ⏳ WooCommerce: product page (gallery and zoom, pack sizes, sale-price strikethrough, ℞ notice, delivery-estimate
    delivery estimate, sticky mobile add-to-cart, info accordions), shop, cart, checkout and order
    confirmation. **Prescription system:** "Requires prescription" checkbox, checkout upload
    (JPG/PNG/PDF, 5 MB), private storage, Approve/Reject on the order screen, the "Awaiting

@@ -22,7 +22,9 @@ class Catalogue {
 
 	/**
 	 * slug => spec. 'old_slugs' lets existing products be found and renamed.
-	 * Option rows: [ label, selling price, MRP, SKU suffix ].
+	 * Option rows: [ label, price (USD), compare-at price or null, SKU suffix ].
+	 * A compare-at price makes the item "on sale" (shown struck through).
+	 * 'weight' is in grams, 'dimensions' in cm (L × W × H) — PLACEHOLDERS.
 	 */
 	public static function products() {
 		return array(
@@ -35,9 +37,11 @@ class Catalogue {
 				'alt'       => self::ALT_SINGLE,
 				'attribute' => 'Pack size',
 				'options'   => array(
-					array( '1 tube (20 g)', 649, 749, '1' ),
-					array( '2 tubes (2 × 20 g)', 1249, 1498, '2' ),
+					array( '1 tube (20 g)', 29, null, '1' ),
+					array( '2 tubes (2 × 20 g)', 55, null, '2' ),
 				),
+				'weight'    => array( 45, 90 ),
+				'dims'      => array( 15, 4, 3 ),
 				'order'     => 1,
 			),
 			'benoquik-2-pack'    => array(
@@ -49,9 +53,11 @@ class Catalogue {
 				'alt'       => self::ALT_SINGLE . ' (pack of 2)',
 				'attribute' => 'Bundle',
 				'options'   => array(
-					array( 'Cream only', 1249, 1498, 'C' ),
-					array( 'With SPF 50 sunscreen', 1649, 1948, 'SPF' ),
+					array( 'Cream only', 55, null, 'C' ),
+					array( 'With SPF 50 sunscreen', 105, null, 'SPF' ),
 				),
+				'weight'    => array( 90, 190 ),
+				'dims'      => array( 15, 8, 4 ),
 				'order'     => 2,
 			),
 			'benoquik-3-pack'    => array(
@@ -63,24 +69,75 @@ class Catalogue {
 				'alt'       => self::ALT_SINGLE . ' (pack of 3)',
 				'attribute' => 'Bundle',
 				'options'   => array(
-					array( 'Cream only', 1799, 2247, 'C' ),
-					array( 'With SPF 50 sunscreen', 2199, 2697, 'SPF' ),
+					array( 'Cream only', 79, null, 'C' ),
+					array( 'With SPF 50 sunscreen', 149, null, 'SPF' ),
 				),
+				'weight'    => array( 135, 235 ),
+				'dims'      => array( 15, 12, 4 ),
 				'order'     => 3,
 			),
 		);
 	}
 
 	public static function short_description() {
-		return 'Monobenzone Cream USP 20% w/w (20 g) for people with extensive vitiligo. Used under a dermatologist’s supervision, it permanently removes remaining pigment so skin tone becomes even. It is not a cure and does not restore colour.';
+		return 'Monobenzone Cream USP 20% w/w (20 g) for people with extensive vitiligo. Used under a dermatologist’s supervision, it permanently removes remaining pigment so skin tone becomes even. It is not a cure and does not restore color.';
 	}
 
 	public static function description() {
-		return '<p><strong>Benoquik®</strong> contains <strong>Monobenzone Cream USP 20% w/w</strong> in a 20 g tube. It is a prescription depigmenting cream for people with <strong>extensive vitiligo</strong>: it permanently removes pigment from the remaining normally pigmented skin so that skin tone becomes even.</p><p><strong>Benoquik is not a cure for vitiligo and does not restore colour.</strong> Use only under the supervision of a dermatologist.</p><p>Marketed by Quik Pharmaceuticals.</p>';
+		return '<p><strong>Benoquik®</strong> contains <strong>Monobenzone Cream USP 20% w/w</strong> in a 20 g tube. It is a prescription depigmenting cream for people with <strong>extensive vitiligo</strong>: it permanently removes pigment from the remaining normally pigmented skin so that skin tone becomes even.</p><p><strong>Benoquik is not a cure for vitiligo and does not restore color.</strong> Use only under the supervision of a dermatologist.</p><p>Marketed by Quik Pharmaceuticals.</p>';
 	}
 
 	public static function admin_note() {
-		return 'Prices for every pack are PLACEHOLDER PRICES — update them in Product data → Variations before launch (see PLACEHOLDERS.md). This note is only visible in the admin.';
+		return 'Prices for every pack are PLACEHOLDER PRICES in USD — update them in Product data → Variations before launch (see PLACEHOLDERS.md). Weights/dimensions are placeholders too. This note is only visible in the admin.';
+	}
+
+	/** Price row → regular / sale price. */
+	private static function set_price( \WC_Product_Variation $v, array $o ) {
+		if ( null !== $o[2] && (float) $o[2] > (float) $o[1] ) {
+			$v->set_regular_price( (string) $o[2] );
+			$v->set_sale_price( (string) $o[1] );
+		} else {
+			$v->set_regular_price( (string) $o[1] );
+			$v->set_sale_price( '' );
+		}
+	}
+
+	/**
+	 * International migration: set the USD placeholder prices, weights (g) and
+	 * dimensions (cm) on the existing variations, matched by label.
+	 */
+	public static function apply_prices_and_shipping() {
+		$log = array();
+		foreach ( self::products() as $slug => $spec ) {
+			$product = self::find( $slug, $spec );
+			if ( ! $product || ! $product->is_type( 'variable' ) ) {
+				$log[] = "Prices: product {$spec['name']} not found — skipped";
+				continue;
+			}
+			$product->set_short_description( self::short_description() );
+			$product->update_meta_data( '_bq_admin_note', self::admin_note() );
+			$product->set_weight( (string) $spec['weight'][0] );
+			list( $l, $w, $h ) = $spec['dims'];
+			$product->set_length( (string) $l );
+			$product->set_width( (string) $w );
+			$product->set_height( (string) $h );
+			$product->save();
+			foreach ( $product->get_children() as $cid ) {
+				$v   = wc_get_product( $cid );
+				$val = $v ? (string) current( $v->get_attributes() ) : '';
+				foreach ( $spec['options'] as $i => $o ) {
+					if ( sanitize_title( $o[0] ) === sanitize_title( $val ) || $o[0] === $val ) {
+						self::set_price( $v, $o );
+						$v->set_weight( (string) $spec['weight'][ $i ] );
+						$v->save();
+						$log[] = sprintf( 'Price: %s — %s = $%s (weight %d g)', $spec['name'], $o[0], $o[1], $spec['weight'][ $i ] );
+					}
+				}
+			}
+			\WC_Product_Variable::sync( $product->get_id() );
+			wc_delete_product_transients( $product->get_id() );
+		}
+		return $log;
 	}
 
 	/** Import (once) a bundled product image into the Media Library. */
@@ -227,14 +284,12 @@ class Catalogue {
 				if ( ! $v ) {
 					$v = new \WC_Product_Variation();
 					$v->set_parent_id( $product_id );
-					$v->set_regular_price( (string) $o[2] );
-					$v->set_sale_price( (string) $o[1] );
+					self::set_price( $v, $o );
 				}
 				$v->set_attributes( array( $attr_key => $o[0] ) );
 				$v->set_status( 'publish' );
 				if ( '' === (string) $v->get_regular_price() ) {
-					$v->set_regular_price( (string) $o[2] );
-					$v->set_sale_price( (string) $o[1] );
+					self::set_price( $v, $o );
 				}
 				if ( ! $v->get_manage_stock() ) {
 					$v->set_stock_status( 'instock' );

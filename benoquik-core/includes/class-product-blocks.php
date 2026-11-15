@@ -3,7 +3,7 @@
  * Product-page blocks (used by the theme's Single Product template):
  *   benoquik/product-subtitle   – pack size under the title
  *   benoquik/rx-notice          – "℞ Prescription required …" box
- *   benoquik/delivery-estimate  – delivery line + pincode check
+ *   benoquik/delivery-estimate  – delivery estimate by country
  *   benoquik/product-info       – Overview / How to use / … accordions
  *   benoquik/sticky-cart        – sticky add-to-cart bar on mobile
  * Plus the pill-style pack-size selector (progressive enhancement).
@@ -47,6 +47,8 @@ class Product_Blocks {
 		register_block_type( 'benoquik/rx-notice', $common + array( 'render_callback' => array( __CLASS__, 'rx_notice' ) ) );
 		register_block_type( 'benoquik/delivery-estimate', $common + array( 'render_callback' => array( __CLASS__, 'delivery' ) ) );
 		register_block_type( 'benoquik/product-info', $common + array( 'render_callback' => array( __CLASS__, 'info' ) ) );
+		register_block_type( 'benoquik/price-note', $common + array( 'render_callback' => array( __CLASS__, 'price_note' ) ) );
+		register_block_type( 'benoquik/shipping-note', $common + array( 'render_callback' => array( __CLASS__, 'shipping_note' ) ) );
 		register_block_type( 'benoquik/marketed-by', $common + array( 'render_callback' => array( __CLASS__, 'marketed_by' ) ) );
 		register_block_type( 'benoquik/sticky-cart', $common + array( 'render_callback' => array( __CLASS__, 'sticky' ) ) );
 	}
@@ -78,43 +80,59 @@ class Product_Blocks {
 		return '<div class="wp-block-benoquik-rx-notice bq-rx-notice" role="note"><span class="bq-rx-notice__icon" aria-hidden="true">℞</span><p>' . esc_html( Settings::get( 'rx_notice_text' ) ) . '</p></div>';
 	}
 
-	/** Pincode rules: lines "prefix|text", e.g. "40|2–3 working days (Mumbai)". */
-	public static function delivery_rules() {
-		$rules = array();
-		foreach ( explode( "\n", (string) Settings::get( 'delivery_rules' ) ) as $line ) {
-			$parts = array_map( 'trim', explode( '|', $line, 2 ) );
-			if ( 2 === count( $parts ) && preg_match( '/^\d{1,6}$/', $parts[0] ) && '' !== $parts[1] ) {
-				$rules[ $parts[0] ] = $parts[1];
-			}
+	/** Country the visitor is most likely in: billing country, else IP geolocation, else none. */
+	private static function guess_country() {
+		$restricted = Settings::country_list( Settings::get( 'restricted_countries' ) );
+		$c          = '';
+		if ( is_user_logged_in() && WC()->customer ) {
+			$c = WC()->customer->get_billing_country();
 		}
-		return $rules;
+		if ( ! $c && class_exists( 'WC_Geolocation' ) ) {
+			$geo = \WC_Geolocation::geolocate_ip( '', true, false );
+			$c   = $geo['country'] ?? '';
+		}
+		return ( $c && ! in_array( $c, $restricted, true ) ) ? $c : '';
 	}
 
+	/** Country-based delivery estimate (rules in Benoquik → Settings). */
 	public static function delivery() {
-		$default = Settings::get( 'delivery_default' );
-		$data    = wp_json_encode(
-			array(
-				'rules'   => self::delivery_rules(),
-				'default' => $default,
-				'invalid' => __( 'Please enter a valid 6-digit pincode.', 'benoquik-core' ),
-				'prefix'  => __( 'Delivery to %s:', 'benoquik-core' ),
-			)
-		);
+		$rules     = International::delivery_rules();
+		$default   = Settings::get( 'delivery_default' );
+		$countries = WC()->countries->get_allowed_countries();
+		$current   = self::guess_country();
+		$text      = $current && isset( $rules[ $current ] ) ? $rules[ $current ] : $default;
+		$data      = wp_json_encode( array( 'rules' => $rules, 'default' => $default ) );
 		ob_start();
 		?>
 		<div class="wp-block-benoquik-delivery-estimate bq-delivery" data-bq-delivery="<?php echo esc_attr( $data ); ?>">
 			<p class="bq-delivery__line">
 				<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v9H3zM14 9h4l3 3v3h-7"/><circle cx="7" cy="17" r="1.8"/><circle cx="17.5" cy="17" r="1.8"/></svg>
-				<span class="bq-delivery__result" aria-live="polite"><strong><?php esc_html_e( 'Delivery:', 'benoquik-core' ); ?></strong> <?php echo esc_html( $default ); ?></span>
+				<span class="bq-delivery__result" aria-live="polite"><strong><?php esc_html_e( 'Estimated delivery:', 'benoquik-core' ); ?></strong> <span class="bq-delivery__text"><?php echo esc_html( $text ); ?></span></span>
 			</p>
-			<form class="bq-delivery__form" novalidate>
-				<label for="bq-pincode" class="screen-reader-text"><?php esc_html_e( 'Pincode', 'benoquik-core' ); ?></label>
-				<input id="bq-pincode" name="pincode" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="6" pattern="[0-9]{6}" placeholder="<?php esc_attr_e( 'Enter pincode', 'benoquik-core' ); ?>">
-				<button type="submit"><?php esc_html_e( 'Check', 'benoquik-core' ); ?></button>
-			</form>
+			<p class="bq-delivery__form">
+				<label for="bq-delivery-country"><?php esc_html_e( 'Ship to', 'benoquik-core' ); ?></label>
+				<select id="bq-delivery-country" autocomplete="country">
+					<option value=""><?php esc_html_e( 'Choose your country', 'benoquik-core' ); ?></option>
+					<?php foreach ( $countries as $code => $name ) : ?>
+						<option value="<?php echo esc_attr( $code ); ?>" <?php selected( $current, $code ); ?>><?php echo esc_html( $name ); ?></option>
+					<?php endforeach; ?>
+				</select>
+			</p>
 		</div>
 		<?php
 		return ob_get_clean();
+	}
+
+	/** "Prices in USD, excluding taxes, import duties and customs fees." */
+	public static function price_note() {
+		$t = trim( (string) Settings::get( 'price_note' ) );
+		return $t ? '<p class="wp-block-benoquik-price-note bq-price-note">' . esc_html( $t ) . '</p>' : '';
+	}
+
+	/** "Ships from India · Tracked international delivery · Discreet packaging" */
+	public static function shipping_note() {
+		$t = trim( (string) Settings::get( 'shipping_note' ) );
+		return $t ? '<p class="wp-block-benoquik-shipping-note bq-shipping-note">' . esc_html( $t ) . '</p>' : '';
 	}
 
 	public static function info( $attrs, $content, $block ) {
@@ -143,11 +161,7 @@ class Product_Blocks {
 
 	public static function marketed_by() {
 		$by = Settings::get( 'marketed_by' );
-		if ( ! $by ) {
-			return '';
-		}
-		$extra = array_filter( array( Settings::get( 'marketer_address' ), Settings::get( 'marketer_licence' ) ) );
-		return '<p class="wp-block-benoquik-marketed-by bq-marketed-by">' . esc_html__( 'Marketed by', 'benoquik-core' ) . ' <strong>' . esc_html( $by ) . '</strong>' . ( $extra ? '<br><span>' . esc_html( implode( ' · ', $extra ) ) . '</span>' : '' ) . '</p>';
+		return $by ? '<p class="wp-block-benoquik-marketed-by bq-marketed-by">' . esc_html__( 'Marketed by', 'benoquik-core' ) . ' <strong>' . esc_html( $by ) . '</strong>, ' . esc_html__( 'India', 'benoquik-core' ) . '</p>' : '';
 	}
 
 	public static function sticky( $attrs, $content, $block ) {

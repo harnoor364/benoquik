@@ -40,7 +40,7 @@ $benoquik_story = static function ( $img, $name, $text ) {
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"bq-stories","layout":{"type":"default"}} -->
-<div class="wp-block-group bq-stories"><?php echo $benoquik_story( 'story-1.webp', 'Priya, 34 · Pune (placeholder)', '“My dermatologist walked me through the patch test and sun care before I began. I felt informed, not rushed.”' ); // phpcs:ignore ?>
+<div class="wp-block-group bq-stories"><?php echo $benoquik_story( 'story-1.webp', 'Sarah, 38 · London (placeholder)', '“My dermatologist walked me through the patch test and sun care before I began. I felt informed, not rushed.”' ); // phpcs:ignore ?>
 
 <!-- wp:cover {"url":"<?php echo benoquik_img( 'story-2.webp' ); ?>","alt":"","dimRatio":100,"gradient":"card-scrim","minHeight":360,"contentPosition":"bottom left","className":"bq-story bq-story--video bq-reveal"} -->
 <div class="wp-block-cover has-custom-content-position is-position-bottom-left bq-story bq-story--video bq-reveal" style="min-height:360px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient has-card-scrim-gradient-background"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo benoquik_img( 'story-2.webp' ); ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:buttons {"className":"bq-play"} -->
@@ -50,12 +50,12 @@ $benoquik_story = static function ( $img, $name, $text ) {
 <!-- /wp:buttons -->
 
 <!-- wp:paragraph {"textColor":"white","fontSize":"small"} -->
-<p class="has-white-color has-text-color has-small-font-size"><strong>Rahul &amp; his mother (placeholder)</strong><br>A caregiver’s view of starting treatment — video coming soon.</p>
+<p class="has-white-color has-text-color has-small-font-size"><strong>Daniel, 45 · Toronto (placeholder)</strong><br>Starting treatment, in his own words — video coming soon.</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:cover -->
 
-<?php echo $benoquik_story( 'story-3.webp', 'Farah, 41 · Hyderabad (placeholder)', '“Choosing depigmentation was a big decision. Talking it through with my doctor and family helped.”' ); // phpcs:ignore ?>
+<?php echo $benoquik_story( 'story-3.webp', 'Aisha, 33 · Dubai (placeholder)', '“Choosing depigmentation was a big decision. Talking it through with my doctor and family helped.”' ); // phpcs:ignore ?>
 
-<?php echo $benoquik_story( 'story-4.webp', 'Anil, 52 · Jaipur (placeholder)', '“Sunscreen every morning is simply part of my routine now.”' ); // phpcs:ignore ?></div>
+<?php echo $benoquik_story( 'story-4.webp', 'Maria, 51 · Sydney (placeholder)', '“Sunscreen every morning is simply part of my routine now.”' ); // phpcs:ignore ?></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

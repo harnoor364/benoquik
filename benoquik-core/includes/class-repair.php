@@ -7,6 +7,7 @@
  *   wp benoquik repair-products     # pack sizes, prices, subtitles, info, reviews off
  *   wp benoquik rebuild-home        # rebuild the Home page from the theme's sections
  *   wp benoquik migrate-v030        # real product: 20 g packs, names, images, SKUs
+ *   wp benoquik migrate-intl        # international store: USD, shipping zones, pages, emails
  *   wp benoquik upgrade             # all of the above + cache/lookup-table flush
  *
  * Or from WordPress admin -> Benoquik -> Repair store data.
@@ -33,7 +34,7 @@ class Repair {
 		$log = get_transient( 'benoquik_repair_log' );
 		echo '<div class="wrap"><h1>' . esc_html__( 'Repair store data', 'benoquik-core' ) . '</h1>';
 		echo '<p><strong>' . esc_html__( 'Back up your database first', 'benoquik-core' ) . '</strong> ' . esc_html__( '(e.g. with UpdraftPlus, or "wp db export" in Local’s site shell).', 'benoquik-core' ) . '</p>';
-		echo '<p>' . esc_html__( 'Fixes garbled characters (â€” instead of —), product pack sizes and prices, product subtitles, empty medicine-information boxes, and turns reviews off.', 'benoquik-core' ) . '</p>';
+		echo '<p>' . esc_html__( 'Fixes garbled characters, product pack sizes, subtitles and medicine information, turns reviews off, and applies the international store setup (USD, shipping zones, pages, emails).', 'benoquik-core' ) . '</p>';
 		if ( $log ) {
 			echo '<div class="notice notice-info"><pre style="white-space:pre-wrap">' . esc_html( implode( "\n", (array) $log ) ) . '</pre></div>';
 			delete_transient( 'benoquik_repair_log' );
@@ -64,6 +65,8 @@ class Repair {
 		$log = array_merge( $log, Catalogue::apply( false ) );
 		$log[] = '== Products ==';
 		$log = array_merge( $log, self::repair_products() );
+		$log[] = '== International store ==';
+		$log = array_merge( $log, International::migrate() );
 		if ( $rebuild_home ) {
 			$log[] = '== Home page ==';
 			$log = array_merge( $log, self::rebuild_home() );
@@ -241,6 +244,13 @@ class Repair {
 			$product->set_default_attributes( $defaults );
 		}
 		$log[] = sprintf( '#%d: %d variation(s) OK', $id, count( $product->get_children() ) );
+		return $log;
+	}
+
+	public static function migrate_intl() {
+		$log = International::migrate();
+		$log = array_merge( $log, self::rebuild_home() );
+		$log = array_merge( $log, self::flush() );
 		return $log;
 	}
 

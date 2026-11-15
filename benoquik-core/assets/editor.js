@@ -15,12 +15,14 @@
 	var blocks = {
 		'benoquik/marquee': { title: 'Benoquik: Marquee strip', icon: 'controls-forward', supports: { align: [ 'full', 'wide' ] }, attributes: { align: { type: 'string', default: 'full' } } },
 		'benoquik/announcement': { title: 'Benoquik: Announcement bar', icon: 'megaphone' },
-		'benoquik/compliance': { title: 'Benoquik: Licence & compliance row', icon: 'shield' },
+		'benoquik/compliance': { title: 'Benoquik: License & compliance row', icon: 'shield' },
 		'benoquik/subscribe': { title: 'Benoquik: Email subscribe form', icon: 'email' },
 		'benoquik/product-subtitle': { title: 'Benoquik: Product subtitle (pack size)', icon: 'editor-textcolor', usesContext: [ 'postId', 'postType' ] },
 		'benoquik/rx-notice': { title: 'Benoquik: Prescription notice', icon: 'shield-alt', usesContext: [ 'postId', 'postType' ] },
 		'benoquik/delivery-estimate': { title: 'Benoquik: Delivery estimate', icon: 'car', usesContext: [ 'postId', 'postType' ] },
 		'benoquik/product-info': { title: 'Benoquik: Medicine information accordions', icon: 'list-view', usesContext: [ 'postId', 'postType' ] },
+		'benoquik/price-note': { title: 'Benoquik: Price note (currency, duties)', icon: 'money-alt' },
+		'benoquik/shipping-note': { title: 'Benoquik: Shipping line', icon: 'airplane' },
 		'benoquik/marketed-by': { title: 'Benoquik: Marketed by', icon: 'building' },
 		'benoquik/sticky-cart': { title: 'Benoquik: Sticky add-to-cart (mobile)', icon: 'cart', usesContext: [ 'postId', 'postType' ] }
 	};

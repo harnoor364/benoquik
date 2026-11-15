@@ -18,41 +18,53 @@ class Settings {
 	public static function fields() {
 		return array(
 			'store'      => array(
-				'title'  => __( 'Contact', 'benoquik-core' ),
+				'title'  => __( 'Contact & support', 'benoquik-core' ),
 				'fields' => array(
-					'whatsapp_number'  => array( __( 'WhatsApp number', 'benoquik-core' ), 'text', '919999999999', __( 'With country code, digits only. Example: 919876543210. Used by every button with the CSS class "bq-whatsapp".', 'benoquik-core' ) ),
+					'whatsapp_number'  => array( __( 'WhatsApp number', 'benoquik-core' ), 'text', '910000000000', __( 'International format, digits only, starting with the country code. Example for India: 919876543210. Used by every button with the CSS class "bq-whatsapp".', 'benoquik-core' ) ),
 					'whatsapp_message' => array( __( 'WhatsApp pre-filled message', 'benoquik-core' ), 'text', 'Hello, I have a question about Benoquik.', '' ),
-					'support_phone'    => array( __( 'Support phone (display)', 'benoquik-core' ), 'text', '+91 99999 99999', '' ),
+					'support_phone'    => array( __( 'Support phone (display, with country code)', 'benoquik-core' ), 'text', '+91 00000 00000 (placeholder)', '' ),
 					'support_email'    => array( __( 'Support email', 'benoquik-core' ), 'email', 'care@example.com', '' ),
+					'support_hours'    => array( __( 'Support hours (with time zone)', 'benoquik-core' ), 'text', 'Mon–Sat, 09:00–18:00 IST (UTC+5:30) · We reply within 1 business day', __( 'Shown on the Contact page and in emails.', 'benoquik-core' ) ),
 				),
 			),
 			'messaging'  => array(
 				'title'  => __( 'Announcement & marquee', 'benoquik-core' ),
 				'fields' => array(
-					'announcement_text' => array( __( 'Announcement bar text', 'benoquik-core' ), 'text', '℞ Prescription required · Free delivery above ₹999 · Pan-India shipping', __( 'Shown above the header on every page. Leave empty to hide.', 'benoquik-core' ) ),
+					'announcement_text' => array( __( 'Announcement bar text', 'benoquik-core' ), 'text', 'Worldwide shipping · Free shipping over $99 · Genuine product', __( 'Shown above the header on every page. Leave empty to hide.', 'benoquik-core' ) ),
 					'announcement_link' => array( __( 'Announcement bar link (optional)', 'benoquik-core' ), 'url', '', '' ),
-					'marquee_items'     => array( __( 'Marquee items (one per line)', 'benoquik-core' ), 'textarea', "Free delivery above ₹999\nPrescription required\nGenuine product\nPan-India shipping", __( 'The blue scrolling strip on the homepage.', 'benoquik-core' ) ),
+					'marquee_items'     => array( __( 'Marquee items (one per line)', 'benoquik-core' ), 'textarea', "Worldwide shipping\nFree shipping over $99\nGenuine product\nDiscreet packaging\nTracked delivery", __( 'The blue scrolling strip on the homepage.', 'benoquik-core' ) ),
 				),
 			),
 			'product'    => array(
-				'title'  => __( 'Product page', 'benoquik-core' ),
+				'title'  => __( 'Product page, cart & checkout', 'benoquik-core' ),
 				'fields' => array(
-					'rx_notice_text'   => array( __( 'Prescription notice', 'benoquik-core' ), 'text', '℞ Prescription required — you’ll upload it at checkout. Our pharmacist verifies every order.', __( 'Shown on products with "Requires prescription" ticked.', 'benoquik-core' ) ),
-					'delivery_default' => array( __( 'Default delivery estimate', 'benoquik-core' ), 'text', 'Usually delivered in 3–7 working days after prescription approval.', '' ),
-					'delivery_rules'   => array( __( 'Delivery estimate by pincode', 'benoquik-core' ), 'textarea', "40|2–4 working days (Mumbai & Maharashtra)\n11|2–4 working days (Delhi NCR)\n56|2–4 working days (Bengaluru & Karnataka)\n60|3–5 working days (Chennai & Tamil Nadu)\n70|3–5 working days (Kolkata & West Bengal)\n79|6–9 working days (North-East)", __( 'One rule per line: pincode start|delivery text. The longest matching start wins; other pincodes use the default. Example: 400|1–2 working days (Mumbai city).', 'benoquik-core' ) ),
+					'rx_notice_text'      => array( __( 'Prescription notice', 'benoquik-core' ), 'text', '℞ Prescription required — upload a valid prescription from a licensed doctor in your country at checkout. Our pharmacist verifies every order.', __( 'Shown on products with "Requires prescription" ticked.', 'benoquik-core' ) ),
+					'price_note'          => array( __( 'Note under the price', 'benoquik-core' ), 'text', 'Prices in USD, excluding taxes, import duties and customs fees.', '' ),
+					'shipping_note'       => array( __( 'Shipping line on product pages', 'benoquik-core' ), 'text', 'Ships from India · Tracked international delivery · Discreet packaging', '' ),
+					'delivery_default'    => array( __( 'Default delivery estimate', 'benoquik-core' ), 'text', '10–20 business days after prescription approval', __( 'Used for any country without its own rule below.', 'benoquik-core' ) ),
+					'delivery_rules'      => array( __( 'Delivery estimate by country', 'benoquik-core' ), 'textarea', "US|7–12 business days\nCA|7–12 business days\nGB|7–10 business days\nIE|7–10 business days\nDE|7–12 business days\nFR|7–12 business days\nAE|5–8 business days\nSA|6–10 business days\nAU|8–14 business days\nNZ|8–14 business days", __( 'One rule per line: two-letter country code|delivery text. Example: US|7–12 business days.', 'benoquik-core' ) ),
+					'duties_notice'       => array( __( 'Import duties notice (cart & checkout)', 'benoquik-core' ), 'textarea', 'Prices exclude any import duties, VAT or customs fees charged by your country. These are paid by the recipient on delivery.', '' ),
+					'import_confirmation' => array( __( 'Import confirmation checkbox (checkout)', 'benoquik-core' ), 'text', 'I confirm this medicine may be legally imported into my country for personal use with a valid prescription.', __( 'Required at checkout and saved on the order.', 'benoquik-core' ) ),
+				),
+			),
+			'shipping'   => array(
+				'title'  => __( 'Shipping countries', 'benoquik-core' ),
+				'fields' => array(
+					'restricted_countries' => array( __( 'Countries we do not ship to', 'benoquik-core' ), 'text', 'IN', __( 'Two-letter country codes separated by commas, e.g. IN, US. These countries cannot be chosen at checkout. Review this list with your legal advisor.', 'benoquik-core' ) ),
 				),
 			),
 			'compliance' => array(
-				'title'  => __( 'Licences & compliance (shown in the footer)', 'benoquik-core' ),
+				'title'  => __( 'Company & legal details (Indian legal entity, shown in the footer)', 'benoquik-core' ),
 				'fields' => array(
-					'legal_name'      => array( __( 'Registered business name (your pharmacy)', 'benoquik-core' ), 'text', 'Benoquik Pharmacy Pvt. Ltd. (placeholder)', '' ),
-					'marketed_by'     => array( __( 'Product marketed by', 'benoquik-core' ), 'text', 'Quik Pharmaceuticals', __( 'Shown on product pages and in the footer as "Marketed by …".', 'benoquik-core' ) ),
-					'marketer_address' => array( __( 'Marketer address', 'benoquik-core' ), 'text', 'Address (placeholder)', __( 'From the pack. Shown on product pages.', 'benoquik-core' ) ),
-					'marketer_licence' => array( __( 'Manufacturer / marketer licence no.', 'benoquik-core' ), 'text', 'Mfg. Lic. No. (placeholder)', __( 'From the pack. Shown on product pages.', 'benoquik-core' ) ),
-					'drug_licence'    => array( __( 'Drug licence no.', 'benoquik-core' ), 'text', 'DL-XX-000000 (placeholder)', '' ),
-					'gst_number'      => array( __( 'GSTIN', 'benoquik-core' ), 'text', '00AAAAA0000A0Z0 (placeholder)', '' ),
-					'pharmacist_name' => array( __( 'Registered pharmacist', 'benoquik-core' ), 'text', 'Pharmacist Name (placeholder)', '' ),
-					'pharmacist_reg'  => array( __( 'Pharmacist registration no.', 'benoquik-core' ), 'text', 'Reg. No. 00000 (placeholder)', '' ),
+					'legal_name'       => array( __( 'Registered business name (your pharmacy)', 'benoquik-core' ), 'text', 'Benoquik Pharmacy Pvt. Ltd. (placeholder)', '' ),
+					'legal_address'    => array( __( 'Registered address (India)', 'benoquik-core' ), 'text', 'Registered address, India (placeholder)', __( 'Shown only in the footer legal block and on legal pages.', 'benoquik-core' ) ),
+					'marketed_by'      => array( __( 'Product marketed by', 'benoquik-core' ), 'text', 'Quik Pharmaceuticals', __( 'Shown on product pages and in the footer as "Marketed by …".', 'benoquik-core' ) ),
+					'marketer_address' => array( __( 'Marketer address (India)', 'benoquik-core' ), 'text', 'Address (placeholder)', __( 'From the pack. Shown in the footer legal block.', 'benoquik-core' ) ),
+					'marketer_licence' => array( __( 'Manufacturer / marketer license no.', 'benoquik-core' ), 'text', 'Mfg. Lic. No. (placeholder)', __( 'From the pack.', 'benoquik-core' ) ),
+					'drug_licence'     => array( __( 'Drug license no. (India)', 'benoquik-core' ), 'text', 'DL-XX-000000 (placeholder)', '' ),
+					'gst_number'       => array( __( 'GSTIN (Indian tax registration)', 'benoquik-core' ), 'text', '00AAAAA0000A0Z0 (placeholder)', '' ),
+					'pharmacist_name'  => array( __( 'Registered pharmacist', 'benoquik-core' ), 'text', 'Pharmacist Name (placeholder)', '' ),
+					'pharmacist_reg'   => array( __( 'Pharmacist registration no.', 'benoquik-core' ), 'text', 'Reg. No. 00000 (placeholder)', '' ),
 				),
 			),
 		);
@@ -61,6 +73,16 @@ class Settings {
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ) );
 		add_action( 'admin_init', array( __CLASS__, 'register' ) );
+	}
+
+	/** Parse "IN, us ,GB" into ['IN','US','GB'] (valid WooCommerce country codes only). */
+	public static function country_list( $value ) {
+		$codes = array_filter( array_map( 'strtoupper', array_map( 'trim', preg_split( '/[\s,;]+/', (string) $value ) ) ) );
+		if ( function_exists( 'WC' ) && WC()->countries ) {
+			$all   = WC()->countries->get_countries();
+			$codes = array_filter( $codes, static fn( $c ) => isset( $all[ $c ] ) );
+		}
+		return array_values( array_unique( $codes ) );
 	}
 
 	/** Get one setting (falls back to the default). */
@@ -131,7 +153,8 @@ class Settings {
 				}
 			}
 		}
-		$clean['whatsapp_number'] = preg_replace( '/\D+/', '', $clean['whatsapp_number'] );
+		$clean['whatsapp_number']      = preg_replace( '/\D+/', '', $clean['whatsapp_number'] );
+		$clean['restricted_countries'] = implode( ', ', self::country_list( $clean['restricted_countries'] ) );
 		return $clean;
 	}
 
@@ -154,7 +177,7 @@ class Settings {
 			return;
 		}
 		echo '<div class="wrap"><h1>' . esc_html__( 'Benoquik settings', 'benoquik-core' ) . '</h1>';
-		echo '<p>' . esc_html__( 'Changes here update the whole site instantly (header announcement, homepage marquee, WhatsApp buttons and footer licence details).', 'benoquik-core' ) . '</p>';
+		echo '<p>' . esc_html__( 'Changes here update the whole site instantly (announcement bar, homepage marquee, WhatsApp buttons, delivery estimates, checkout notices, shipping countries and the footer legal details).', 'benoquik-core' ) . '</p>';
 		echo '<form method="post" action="options.php">';
 		settings_fields( 'benoquik' );
 		do_settings_sections( 'benoquik' );

@@ -1,132 +1,129 @@
 # Placeholder checklist — fill these in before going live
 
-Everything below is a **placeholder** that was added so the site looks complete.
-Nothing has been removed. Tick each item as you replace it.
+Everything below is a **placeholder** or needs your confirmation. Nothing has been removed. Tick each
+item as you replace it.
 
-> Tip: **Benoquik → Settings** in the WordPress admin holds most of the business details in one place.
+> **Tip:** **Benoquik → Settings** holds most of the business details in one place: contact, support hours,
+> announcement, marquee, delivery estimates, duties text, restricted countries and legal details.
 
-## 1. Business & compliance details (shown in the footer of every page)
+## 1. Before launch: must confirm
 
-| ✓ | Item | Current placeholder | Where to edit |
+| ✓ | Item | Why | Where |
 |---|---|---|---|
-| ☐ | Registered business name | `Benoquik Pharmacy Pvt. Ltd. (placeholder)` | **Benoquik → Settings → Licences & compliance → Registered business name** |
-| ☐ | Drug licence no. | `DL-XX-000000 (placeholder)` | **Benoquik → Settings → Drug licence no.** |
-| ☐ | GSTIN | `00AAAAA0000A0Z0 (placeholder)` | **Benoquik → Settings → GSTIN** |
-| ☐ | Registered pharmacist name | `Pharmacist Name (placeholder)` | **Benoquik → Settings → Registered pharmacist** |
-| ☐ | Pharmacist registration no. | `Reg. No. 00000 (placeholder)` | **Benoquik → Settings → Pharmacist registration no.** |
-| ☐ | Quik Pharmaceuticals address (marketer, from the pack) | `Address (placeholder)` | **Benoquik → Settings → Marketer address** (shown on product pages) |
-| ☐ | Quik Pharmaceuticals manufacturing/marketing licence no. (from the pack) | `Mfg. Lic. No. (placeholder)` | **Benoquik → Settings → Manufacturer / marketer licence no.** |
-| ☐ | "Marketed by" name | `Quik Pharmaceuticals` (already the real name; just confirm it) | **Benoquik → Settings → Product marketed by** |
+| ☐ | **Razorpay "International Payments" activated** | The store charges in **USD**. Razorpay only accepts non-INR payments once International Payments is approved on your Razorpay account. Until then customers get a payment error. WordPress admin shows a warning notice until you confirm. | Razorpay Dashboard → Account & Settings → International Payments, then test a USD payment in Test mode |
+| ☐ | **Countries we do not ship to** | Currently **India only**. Add every country where importing monobenzone, or personal import of prescription medicines, isn't allowed. **Review with your legal advisor.** | **Benoquik → Settings → Shipping countries** (two-letter codes, e.g. `IN, US`) |
+| ☐ | **All policy pages reviewed by a lawyer** | Rewritten for international buyers but still placeholders (see section 7) | **Pages** |
+| ☐ | **Privacy Policy published** | It's still a **DRAFT**. Until it's published, the Privacy Policy links in the registration checkbox and at checkout show "page not found" | **Settings → Privacy**, then edit and publish |
+| ☐ | **Geolocation key** | "Default customer location: Geolocate" needs a free MaxMind license key, otherwise no country is pre-selected | **WooCommerce → Settings → Integration → MaxMind Geolocation** |
+| ☐ | **SEO texts (Rank Math)** | Site title and meta description, Open Graph text, and Organization schema for an international audience; mention India only as the company's location | **Rank Math → Titles & Meta**, and **Rank Math → General → Local SEO** ("Organization"; set *no* geo-targeting) |
 
-## 2. Contact details
+## 2. Prices (USD) — all placeholders
 
-| ✓ | Item | Current placeholder | Where to edit |
-|---|---|---|---|
-| ☐ | WhatsApp number (every "Talk to a pharmacist" button) | `919999999999` | **Benoquik → Settings → WhatsApp number** (country code + number, digits only) |
-| ☐ | WhatsApp pre-filled message | `Hello, I have a question about Benoquik.` | **Benoquik → Settings → WhatsApp pre-filled message** |
-| ☐ | Support phone | `+91 99999 99999` | **Benoquik → Settings → Support phone** |
-| ☐ | Support email | `care@example.com` | **Benoquik → Settings → Support email** |
-| ☐ | Store address (for invoices and emails) | WooCommerce default | **WooCommerce → Settings → General → Store Address** |
+Each product also has an admin-only note saying the prices are placeholders (**Product data → General → Internal note**).
 
-## 3. Grievance officer (required for Indian e-commerce)
-
-| ✓ | Item | Where to edit |
-|---|---|---|
-| ☐ | Grievance officer name, designation, email, phone, postal address, working hours | **Pages → Grievance Officer → Edit** (the page currently only says "This page is a placeholder") |
-
-## 4. People & testimonials (homepage)
-
-| ✓ | Item | Current placeholder | Where to edit |
-|---|---|---|---|
-| ☐ | Dermatologist quote and signature | "Dr. A. Sharma", "MD (Dermatology) · Placeholder name — replace with your medical advisor" | **Pages → Home → Edit**, then the quote section. Use a real advisor only with their written consent |
-| ☐ | Patient story 1 | "Priya, 34 · Pune (placeholder)" + quote | **Pages → Home → Edit → Patient stories** |
-| ☐ | Patient story 2 (video card) | "Rahul & his mother (placeholder)". The **▶ Play** button links to `#` | Same section. Put a YouTube link on the ▶ Play button |
-| ☐ | Patient story 3 | "Farah, 41 · Hyderabad (placeholder)" | Same section |
-| ☐ | Patient story 4 | "Anil, 52 · Jaipur (placeholder)" | Same section |
-| ☐ | Section intro | "(Placeholder stories — replace with real, consented testimonials.)" | Same section |
-
-**To hide the whole Patient stories section** until you have real, consented testimonials:
-1. Go to **Pages → Home → Edit**.
-2. Open **List View** (the ☰ icon, top left).
-3. Click **"Patient stories (placeholder — hide until real, consented testimonials)"**.
-4. Click **⋮ → Hide**. It disappears from the live site but stays in the editor so you can show it again later.
-
-Testimonials must never include before/after photos, cure claims or "results in X weeks" promises.
-
-## 5. Images (all computer-generated stand-ins, no real people)
-
-Replace each image with licensed photography. To replace one: click the image in the editor, then **Replace → Media Library / Upload**.
-
-| ✓ | Image | Where it appears | Where to edit |
-|---|---|---|---|
-| ☐ | Hero background (abstract navy texture) | Homepage hero, behind the text | **Pages → Home → Edit**: click the hero background → *Replace* |
-| ✓ | Hero image | Homepage hero, right side | Now the **real Benoquik pack photo** on a light-blue tile. To change it: **Pages → Home → Edit** → click the image → *Replace* |
-| ✓ | Hero card thumbnail | Floating "Benoquik Cream 20 g" card | Real pack photo (same place) |
-| ☐ | "Prescribed and supervised" image | Homepage split section | **Pages → Home → Edit** |
-| ☐ | 5 "How Benoquik works" tile images | Homepage bento grid | **Pages → Home → Edit**: click a tile → *Replace* in the toolbar |
-| ☐ | 4 patient-story images | Homepage patient stories | **Pages → Home → Edit** |
-| ☐ | "Start your treatment" background | Homepage CTA | **Pages → Home → Edit** |
-| ✓ | 3 product images | Shop, product pages, homepage cards | Now the **real pack photo** (the 2-Pack and 3-Pack use the same photo with a "2 × 20 g" / "3 × 20 g" badge). For proper multi-pack photos: **Products → (product) → Edit → Product image** |
-
-## 6. Products & prices
-
-| ✓ | Item | Current placeholder | Where to edit |
-|---|---|---|---|
-**All prices below are PLACEHOLDER PRICES.** Each product also has an admin-only note saying so
-(**Product data → General → Internal note**). It's never shown to customers.
-
-| ✓ | Product | Variation | SKU | Selling price / MRP (placeholder) |
+| ✓ | Product | Variation | SKU | Price (placeholder) |
 |---|---|---|---|---|
-| ☐ | Benoquik Cream 20 g | 1 tube (20 g) | BQ-20G-1 | ₹649 / ₹749 |
-| ☐ | Benoquik Cream 20 g | 2 tubes (2 × 20 g) | BQ-20G-2 | ₹1,249 / ₹1,498 |
-| ☐ | Benoquik 2-Pack | Cream only | BQ-20G-X2-C | ₹1,249 / ₹1,498 |
-| ☐ | Benoquik 2-Pack | With SPF 50 sunscreen | BQ-20G-X2-SPF | ₹1,649 / ₹1,948 |
-| ☐ | Benoquik 3-Pack | Cream only | BQ-20G-X3-C | ₹1,799 / ₹2,247 |
-| ☐ | Benoquik 3-Pack | With SPF 50 sunscreen | BQ-20G-X3-SPF | ₹2,199 / ₹2,697 |
+| ☐ | Benoquik Cream 20 g | 1 tube (20 g) | BQ-20G-1 | $29.00 |
+| ☐ | Benoquik Cream 20 g | 2 tubes (2 × 20 g) | BQ-20G-2 | $55.00 |
+| ☐ | Benoquik 2-Pack | Cream only | BQ-20G-X2-C | $55.00 |
+| ☐ | Benoquik 2-Pack | With SPF 50 sunscreen | BQ-20G-X2-SPF | $105.00 |
+| ☐ | Benoquik 3-Pack | Cream only | BQ-20G-X3-C | $79.00 |
+| ☐ | Benoquik 3-Pack | With SPF 50 sunscreen | BQ-20G-X3-SPF | $149.00 |
 
-Edit prices in **Products → (product) → Edit → Product data → Variations** (*Regular price* = MRP, *Sale price* = selling price).
-Confirm the "With SPF 50 sunscreen" bundles are something you actually sell, or delete those variations.
+Edit prices in **Products → (product) → Edit → Product data → Variations**. To show a struck-through
+"was" price, put the old price in *Regular price* and the new one in *Sale price*.
+Confirm you actually sell the "With SPF 50 sunscreen" bundles, or delete those variations.
 
-| ✓ | Item | Current value | Where to edit |
+## 3. Shipping (USD) — all placeholders
+
+**WooCommerce → Settings → Shipping**. Every zone has "Free tracked shipping" on orders over **$99**.
+
+| ✓ | Zone | Countries | Flat rate | Free over |
+|---|---|---|---|---|
+| ☐ | United States & Canada | US, CA | $15.00 | $99.00 |
+| ☐ | United Kingdom & Europe | All European countries | $15.00 | $99.00 |
+| ☐ | Middle East (GCC) | AE, SA, QA, KW, BH, OM | $12.00 | $99.00 |
+| ☐ | Australia & New Zealand | AU, NZ | $18.00 | $99.00 |
+| ☐ | Rest of world ("Locations not covered by your other zones") | Everything else, except restricted countries | $20.00 | $99.00 |
+
+If you change the $99 free-shipping threshold, also update the **announcement bar**, the **marquee**
+(Benoquik → Settings) and the homepage FAQ.
+
+| ✓ | Item | Current value | Where |
 |---|---|---|---|
-| ☐ | Subtitles | "Monobenzone Cream USP 20% w/w · 1 tube (20 g)" / "· 2 × 20 g tubes" / "· 3 × 20 g tubes" | **Product data → General → Subtitle (pack size)** |
-| ☐ | SKUs | `BQ-20G`, `BQ-20G-X2`, `BQ-20G-X3` (+ variation suffixes) | **Product data → Inventory** (replace with your own if you have them) |
-| ☐ | Medicine information (Overview, How to use, Side effects, Safety advice, Storage, FAQs) | General default text | **Product data → Medicine information**. Have your pharmacist / medical advisor review it |
-| ☐ | Short description | Generic text | **Products → Edit → Product short description** (below the main editor) |
+| ☐ | Delivery estimates by country | US/CA 7–12, GB/IE 7–10, DE/FR 7–12, AE 5–8, SA 6–10, AU/NZ 8–14 business days; others 10–20 | **Benoquik → Settings → Delivery estimate by country** |
+| ☐ | Product weights (placeholders) | 1 tube 45 g, 2 tubes 90 g, 2-Pack 90 g, +sunscreen 190 g, 3-Pack 135 g, +sunscreen 235 g | **Product data → Shipping** and each variation |
+| ☐ | Product dimensions (placeholders) | 15 × 4 × 3 cm (single), 15 × 8 × 4 cm (2-Pack), 15 × 12 × 4 cm (3-Pack) | **Product data → Shipping** |
+| ☐ | Import duties notice (cart & checkout) | "Prices exclude any import duties, VAT or customs fees…" | **Benoquik → Settings → Import duties notice** |
+| ☐ | Import confirmation checkbox text | "I confirm this medicine may be legally imported into my country…" | **Benoquik → Settings → Import confirmation checkbox** (have your lawyer approve it) |
 
-## 7. Pages with placeholder text
+## 4. Company & legal details (Indian legal entity, footer and legal pages only)
 
-Each of these pages currently says only *"This page is a placeholder"*. Edit them in **Pages → (page) → Edit**:
+| ✓ | Item | Current placeholder | Where |
+|---|---|---|---|
+| ☐ | Registered business name | `Benoquik Pharmacy Pvt. Ltd. (placeholder)` | **Benoquik → Settings → Company & legal details** |
+| ☐ | Registered address (India) | `Registered address, India (placeholder)` | same |
+| ☐ | Drug license no. (India) | `DL-XX-000000 (placeholder)` | same |
+| ☐ | GSTIN (Indian tax registration) | `00AAAAA0000A0Z0 (placeholder)` | same |
+| ☐ | Registered pharmacist + registration no. | `Pharmacist Name (placeholder)`, `Reg. No. 00000 (placeholder)` | same |
+| ☐ | Quik Pharmaceuticals address (from the pack) | `Address (placeholder)` | same → Marketer address |
+| ☐ | Manufacturer / marketer license no. (from the pack) | `Mfg. Lic. No. (placeholder)` | same |
+| ☐ | Store address for invoices (stays in India) | WooCommerce store address | **WooCommerce → Settings → General → Store Address** |
+| ☐ | Grievance Officer: name, designation, email, +91 phone, address | Placeholders on the page | **Pages → Grievance Officer** (required by Indian law) |
+| ☐ | Terms & Conditions: legal business name, court city | `[legal business name]`, `[city]` | **Pages → Terms & Conditions** |
 
-- ☐ About
-- ☐ Contact (form, phone, WhatsApp, address, map)
-- ☐ FAQ
-- ☐ Upload Prescription
-- ☐ Track Order
-- ☐ Terms & Conditions
+## 5. Contact & support
+
+| ✓ | Item | Current placeholder | Where |
+|---|---|---|---|
+| ☐ | WhatsApp number (international format, digits only) | `910000000000` | **Benoquik → Settings → WhatsApp number** |
+| ☐ | Support phone (with country code) | `+91 00000 00000 (placeholder)` | **Benoquik → Settings → Support phone** |
+| ☐ | Support email | `care@example.com` | **Benoquik → Settings → Support email** |
+| ☐ | Support hours and response time | `Mon–Sat, 09:00–18:00 IST (UTC+5:30) · We reply within 1 business day` | **Benoquik → Settings → Support hours** (also used in emails; re-run *Repair store data* to refresh the email texts) |
+| ☐ | Email footer and extra email texts | International wording with support hours | **WooCommerce → Settings → Emails** (each email → *Additional content*) |
+
+## 6. People, testimonials & images (homepage)
+
+| ✓ | Item | Current placeholder | Where |
+|---|---|---|---|
+| ☐ | Dermatologist quote and signature | "Dr. A. Placeholder", "MD (Dermatology) · Placeholder name…" | **Pages → Home → Edit** → quote section. Use a real advisor only with their written consent |
+| ☐ | Patient stories | "Sarah, 38 · London", "Daniel, 45 · Toronto" (video card, ▶ Play links to `#`), "Aisha, 33 · Dubai", "Maria, 51 · Sydney", all "(placeholder)" | **Pages → Home → Edit → Patient stories** |
+| ☐ | Decorative images | Hero background, "Prescribed and supervised" image, 5 bento tiles, 4 story images, CTA background (computer-generated, no real people) | **Pages → Home → Edit**: click an image → *Replace* |
+| ✓ | Product photos | The real pack photo (2-Pack / 3-Pack use a "2 × 20 g" / "3 × 20 g" badge) | **Products → Edit → Product image** |
+
+**To hide Patient stories** until you have real, consented testimonials: **Pages → Home → Edit** → List View →
+"Patient stories (placeholder…)" → **⋮ → Hide**. Never use before/after photos, cure claims or timed result promises.
+
+## 7. Pages: rewritten for international customers, to be reviewed by a lawyer
+
+Each page starts with a box saying "Placeholder — have this reviewed by a lawyer before launch". Remove that box once a page is approved.
+
+- ☐ Shipping & Availability (was "Shipping Policy"; the old address redirects)
 - ☐ Returns, Refunds & Cancellation
-- ☐ Shipping Policy
-- ☐ Grievance Officer (see section 3)
-- ☐ Licences & Compliance
+- ☐ Terms & Conditions (governing law India; import legality; prescription; currency)
+- ☐ Privacy Policy (GDPR/UK GDPR rights, transfer to India, cookies, prescription storage). **Still a draft, publish it**
+- ☐ Contact (phone, email, WhatsApp and hours come from Benoquik → Settings)
+- ☐ About ("Based in India, shipping worldwide")
+- ☐ FAQ (international questions added)
+- ☐ Grievance Officer (Indian legal requirement)
+- ☐ Licenses & Compliance (was "Licences & Compliance"; the old address redirects)
 - ☐ Medical Disclaimer
-- ☐ **Privacy Policy: currently a DRAFT. Publish it** (**Settings → Privacy**, then edit and publish the page). Until then the Privacy Policy links in the registration checkbox and at checkout show "page not found".
+- ☐ Upload Prescription (the upload form itself is still to be built)
+- ☐ Track Order (still a placeholder)
 
 Also delete WordPress's sample content: **Posts → "Hello world!"** and **Pages → "Sample Page"**.
 
-## 8. Site-wide text to review
+## 8. Medical text: review with your pharmacist / medical advisor
 
-| ✓ | Item | Where to edit |
+| ✓ | Item | Where |
 |---|---|---|
-| ☐ | Announcement bar ("℞ Prescription required · Free delivery above ₹999 · Pan-India shipping") | **Benoquik → Settings → Announcement bar text**. Make sure the free-delivery threshold matches **WooCommerce → Settings → Shipping** |
-| ☐ | Marquee items | **Benoquik → Settings → Marquee items** |
-| ☐ | Prescription notice on product pages | **Benoquik → Settings → Product page → Prescription notice** |
-| ☐ | Delivery estimate (default text and pincode rules) | **Benoquik → Settings → Product page** |
-| ☐ | Footer medical disclaimer | **Appearance → Editor → Patterns → Footer** |
-| ☐ | Site tagline | **Settings → General → Tagline** |
+| ☐ | Medicine information accordions (Overview, How to use, Side effects, Safety advice, Storage, FAQs) | **Products → Edit → Medicine information** |
+| ☐ | Homepage FAQ and "How Benoquik works" tiles | **Pages → Home → Edit** |
+| ☐ | Prescription notice ("upload a valid prescription from a licensed doctor in your country…") | **Benoquik → Settings → Prescription notice** |
 
 ## 9. Accounts & security
 
-| ✓ | Item | Where to edit |
+| ✓ | Item | Where |
 |---|---|---|
-| ☐ | Admin login `admin` / `admin` (local demo only) | **Users → Profile → New password**. Use a strong, unique password before the site goes online |
+| ☐ | Admin login `admin` / `admin` (local demo only) | **Users → Profile → New password** |
 | ☐ | Admin email `admin@example.com` | **Settings → General → Administration Email Address** |

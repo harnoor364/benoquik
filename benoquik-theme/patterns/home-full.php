@@ -10,6 +10,7 @@
 ?>
 <!-- wp:pattern {"slug":"benoquik/hero"} /-->
 <!-- wp:pattern {"slug":"benoquik/intro-products"} /-->
+<!-- wp:pattern {"slug":"benoquik/shipping-strip"} /-->
 <!-- wp:pattern {"slug":"benoquik/split-dermatologists"} /-->
 <!-- wp:pattern {"slug":"benoquik/bento-how-it-works"} /-->
 <!-- wp:pattern {"slug":"benoquik/quote-dermatologist"} /-->

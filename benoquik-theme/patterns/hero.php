@@ -21,7 +21,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"textColor":"white","fontSize":"large"} -->
-<p class="has-white-color has-text-color has-large-font-size">Benoquik is a prescription depigmentation cream for people with extensive vitiligo. Used under a dermatologist’s supervision, it permanently removes the remaining pigment so your skin tone becomes even. It is not a cure for vitiligo and does not restore colour.</p>
+<p class="has-white-color has-text-color has-large-font-size">Benoquik is a prescription depigmentation cream for people with extensive vitiligo. Used under a dermatologist’s supervision, it permanently removes the remaining pigment so your skin tone becomes even. It is not a cure for vitiligo and does not restore color.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
@@ -35,7 +35,7 @@
 <!-- /wp:buttons -->
 
 <!-- wp:paragraph {"className":"bq-trust","textColor":"white","fontSize":"x-small"} -->
-<p class="bq-trust has-white-color has-text-color has-x-small-font-size">Dermatologist-prescribed · Genuine product · Licensed pharmacy</p>
+<p class="bq-trust has-white-color has-text-color has-x-small-font-size">Dermatologist-prescribed · Genuine product · Shipped worldwide</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column -->

@@ -48,6 +48,16 @@ class CLI {
 	}
 
 	/**
+	 * Convert to the international store: USD prices, units, dates, shipping
+	 * zones, international pages and emails; then rebuild Home and flush caches.
+	 *
+	 * @subcommand migrate-intl
+	 */
+	public function migrate_intl() {
+		self::out( Repair::migrate_intl() );
+	}
+
+	/**
 	 * Update the three products to the real Benoquik range (20 g packs,
 	 * names, subtitles, SKUs, product photos). Keeps IDs, prices and orders.
 	 *

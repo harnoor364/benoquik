@@ -4,7 +4,7 @@
  * Slug: benoquik/quote-dermatologist
  * Categories: benoquik-home
  * Keywords: quote, testimonial, doctor
- * Description: Large centred serif quote with a signature-style name. PLACEHOLDER doctor — replace with your real medical advisor (with their consent).
+ * Description: Large centered serif quote with a signature-style name. PLACEHOLDER doctor — replace with your real medical advisor (with their consent).
  * Viewport Width: 1400
  */
 ?>
@@ -18,7 +18,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"align":"center","className":"bq-signature"} -->
-<p class="has-text-align-center bq-signature">Dr. A. Sharma</p>
+<p class="has-text-align-center bq-signature">Dr. A. Placeholder</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"align":"center","textColor":"muted","fontSize":"x-small"} -->

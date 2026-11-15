@@ -1,8 +1,8 @@
 /* ==========================================================================
    Benoquik theme styles
-   Colours, fonts, sizes and spacing come from theme.json (CSS variables).
+   Colors, fonts, sizes and spacing come from theme.json (CSS variables).
    This file only adds what theme.json can't express: layout details,
-   hover/motion, header behaviour and WooCommerce polish.
+   hover/motion, header behavior and WooCommerce polish.
    ========================================================================== */
 
 :root {
@@ -409,11 +409,10 @@ p.is-style-pill {
 /* ==========================================================================
    WOOCOMMERCE — shared
    ========================================================================== */
-/* No sale badges anywhere (MRP strikethrough is shown instead). */
+/* No sale badges anywhere (the struck-through price is shown instead). */
 .wc-block-components-product-sale-badge, .onsale, .wc-block-grid__product-onsale { display: none !important; }
-/* "MRP" label on struck-through prices */
+/* Struck-through (compare-at) prices */
 .wc-block-components-product-price del, .price del, del .woocommerce-Price-amount { color: var(--bq-muted) !important; opacity: 1 !important; font-weight: 400; text-decoration-thickness: 1px; }
-.bq-single-product .price del::before, .bq-sticky-cart__price del::before { content: "MRP "; text-decoration: none; display: inline-block; margin-right: .15em; }
 .price ins, .wc-block-components-product-price ins { text-decoration: none; }
 .bq-visually-hidden { position: absolute !important; width: 1px !important; min-width: 0 !important; max-width: 1px !important; height: 1px !important; overflow: hidden !important; clip: rect(0 0 0 0) !important; white-space: nowrap !important; border: 0 !important; padding: 0 !important; margin: -1px !important; }
 .bq-breadcrumbs { font-size: var(--wp--preset--font-size--x-small); color: var(--bq-muted); letter-spacing: .02em; }
@@ -825,7 +824,7 @@ p.is-style-pill {
 /* Buttons on dark image banners: white with blue text (blue-on-navy is too low-contrast) */
 .bq-cta .wp-block-button:not(.is-style-ghost) .wp-block-button__link { background: #fff; color: var(--bq-blue); }
 .bq-cta .wp-block-button:not(.is-style-ghost) .wp-block-button__link:hover { background: var(--bq-sky); color: var(--bq-blue-dark); }
-/* WooCommerce's auto-added account icon follows the header text colour */
+/* WooCommerce's auto-added account icon follows the header text color */
 .bq-header .wc-block-customer-account a, .bq-header .wc-block-customer-account svg { color: inherit !important; fill: currentColor; }
 .bq-header .wc-block-customer-account a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
 
@@ -848,3 +847,43 @@ p.is-style-pill {
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content { width: 100%; justify-content: flex-start; }
 .wp-block-navigation__responsive-container.is-menu-open .bq-nav-cta { font-size: 1rem !important; }
 .wp-block-navigation__responsive-container.is-menu-open .bq-nav-cta .wp-block-navigation-item__content { justify-content: center; }
+
+/* ==========================================================================
+   INTERNATIONAL STORE (v0.4.0)
+   ========================================================================== */
+/* Worldwide shipping strip (homepage) */
+.bq-ship-strip { gap: .75rem 1.5rem !important; padding: 1rem 1.25rem; background: var(--bq-sky); border: 1px solid var(--bq-line); border-radius: var(--bq-r-md); }
+.bq-ship-strip p { margin: 0; }
+.bq-ship-strip__text { color: var(--bq-navy); }
+.bq-ship-strip .bq-link-arrow a { color: var(--bq-blue); font-size: var(--wp--preset--font-size--x-small); }
+
+/* Product page: price note, shipping line, delivery estimate by country */
+.bq-price-note { margin: -.5rem 0 0 !important; font-size: var(--wp--preset--font-size--x-small); color: var(--bq-muted); }
+.bq-shipping-note { margin: 0; font-size: var(--wp--preset--font-size--x-small); color: var(--bq-muted); letter-spacing: .06em; text-transform: uppercase; }
+.bq-delivery__form { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; margin: 0; max-width: none; }
+.bq-delivery__form label { font-size: var(--wp--preset--font-size--small); font-weight: 500; }
+.bq-delivery__form select {
+	flex: 1 1 14rem; min-width: 0; min-height: 44px; font: inherit; font-size: 16px; color: var(--bq-navy);
+	border: 1px solid var(--bq-line); border-radius: 999px; padding: .5rem 2.5rem .5rem 1rem; appearance: none; -webkit-appearance: none;
+	background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231F5CA8' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 1rem center;
+}
+
+/* Cart & checkout: import duties notice */
+.bq-duties-notice {
+	display: flex; gap: .7rem; align-items: flex-start;
+	margin: 0 0 1.5rem; padding: .9rem 1.1rem;
+	background: var(--bq-sky); border: 1px solid var(--bq-line); border-left: 4px solid var(--bq-blue);
+	border-radius: var(--bq-r-md); color: var(--bq-navy); font-size: var(--wp--preset--font-size--small);
+}
+.bq-duties-notice svg { flex: none; color: var(--bq-blue); margin-top: .1rem; }
+.bq-duties-notice p { margin: 0; }
+
+/* Policy pages: tables, contact details, country list */
+.bq-table table { width: 100%; border-collapse: collapse; font-size: var(--wp--preset--font-size--small); }
+.bq-table th, .bq-table td { text-align: left; padding: .7rem .8rem; border-bottom: 1px solid var(--bq-line); }
+.bq-table thead th { background: var(--bq-sky); color: var(--bq-navy); font-weight: 600; }
+.bq-contact { display: grid; grid-template-columns: max-content 1fr; gap: .6rem 1.5rem; margin: 1.5rem 0; }
+.bq-contact dt { font-weight: 600; color: var(--bq-navy); }
+.bq-contact dd { margin: 0; }
+@media (max-width: 599px) { .bq-contact { grid-template-columns: 1fr; gap: .15rem; } .bq-contact dd { margin-bottom: .6rem; } }
+.bq-country-list { columns: 2; }

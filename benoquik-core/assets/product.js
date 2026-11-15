@@ -3,7 +3,7 @@
  * WooCommerce's own variation form, which is jQuery-based).
  * 1. Pack-size dropdowns become pill buttons (the real <select> stays in the
  *    form, visually hidden, so WooCommerce keeps working without JS).
- * 2. Pincode delivery estimate.
+ * 2. Delivery estimate by country.
  * 3. Sticky add-to-cart bar on mobile.
  */
 ( function () {
@@ -78,7 +78,7 @@
 		document.querySelectorAll( 'form.variations_form select[name^="attribute_"]' ).forEach( enhanceSelect );
 	}
 
-	/* ---------- 2. Delivery estimate ---------- */
+	/* ---------- 2. Delivery estimate by country ---------- */
 	function initDelivery() {
 		document.querySelectorAll( '[data-bq-delivery]' ).forEach( function ( box ) {
 			var cfg;
@@ -87,44 +87,26 @@
 			} catch ( e ) {
 				return;
 			}
-			var form = box.querySelector( 'form' );
-			var input = box.querySelector( 'input' );
-			var out = box.querySelector( '.bq-delivery__result' );
-			function show( pin ) {
-				var text = cfg.default;
-				var best = '';
-				Object.keys( cfg.rules || {} ).forEach( function ( prefix ) {
-					if ( pin.indexOf( prefix ) === 0 && prefix.length > best.length ) {
-						best = prefix;
-					}
-				} );
-				if ( best ) {
-					text = cfg.rules[ best ];
-				}
-				out.innerHTML = '';
-				var strong = document.createElement( 'strong' );
-				strong.textContent = cfg.prefix.replace( '%s', pin );
-				out.appendChild( strong );
-				out.appendChild( document.createTextNode( ' ' + text ) );
+			var select = box.querySelector( 'select' );
+			var out = box.querySelector( '.bq-delivery__text' );
+			if ( ! select || ! out ) {
+				return;
 			}
-			form.addEventListener( 'submit', function ( e ) {
-				e.preventDefault();
-				var pin = ( input.value || '' ).replace( /\D/g, '' );
-				if ( ! /^[1-9]\d{5}$/.test( pin ) ) {
-					out.textContent = cfg.invalid;
-					input.focus();
-					return;
-				}
-				try { localStorage.setItem( 'bqPincode', pin ); } catch ( err ) {}
-				show( pin );
+			function show() {
+				var c = select.value;
+				out.textContent = ( c && cfg.rules && cfg.rules[ c ] ) ? cfg.rules[ c ] : cfg.default;
+			}
+			select.addEventListener( 'change', function () {
+				try { localStorage.setItem( 'bqCountry', select.value ); } catch ( err ) {}
+				show();
 			} );
 			try {
-				var saved = localStorage.getItem( 'bqPincode' );
-				if ( saved ) {
-					input.value = saved;
-					show( saved );
+				var saved = localStorage.getItem( 'bqCountry' );
+				if ( saved && select.querySelector( 'option[value="' + saved + '"]' ) ) {
+					select.value = saved;
 				}
 			} catch ( err ) {}
+			show();
 		} );
 	}
 

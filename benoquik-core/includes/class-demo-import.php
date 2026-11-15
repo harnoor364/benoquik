@@ -24,6 +24,7 @@ class Demo_Import {
 	const HOME_PATTERNS = array(
 		'benoquik/hero',
 		'benoquik/intro-products',
+		'benoquik/shipping-strip',
 		'benoquik/split-dermatologists',
 		'benoquik/bento-how-it-works',
 		'benoquik/quote-dermatologist',
@@ -113,9 +114,9 @@ class Demo_Import {
 			'track-order'                  => 'Track Order',
 			'terms-and-conditions'         => 'Terms & Conditions',
 			'returns-refunds-cancellation' => 'Returns, Refunds & Cancellation',
-			'shipping-policy'              => 'Shipping Policy',
+			'shipping-availability'        => 'Shipping & Availability',
 			'grievance-officer'            => 'Grievance Officer',
-			'licences-compliance'          => 'Licences & Compliance',
+			'licenses-compliance'          => 'Licenses & Compliance',
 			'medical-disclaimer'           => 'Medical Disclaimer',
 		) as $slug => $title ) {
 			self::ensure_page( $slug, $title, sprintf( $stub, $title ) );

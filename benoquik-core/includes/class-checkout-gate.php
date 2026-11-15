@@ -26,6 +26,8 @@ defined( 'ABSPATH' ) || exit;
 class Checkout_Gate {
 
 	const FIELD_ID   = 'benoquik/accept-terms';
+	const IMPORT_ID  = 'benoquik/import-confirmation';
+	const IMPORT_META = '_bq_import_confirmed_at';
 	const ORDER_META = '_bq_terms_accepted_at';
 	const USER_META  = 'bq_terms_acceptance';
 
@@ -58,6 +60,7 @@ class Checkout_Gate {
 		add_action( 'woocommerce_store_api_checkout_update_order_from_request', array( __CLASS__, 'store_api_guard' ), 5, 2 );
 		add_action( 'woocommerce_checkout_process', array( __CLASS__, 'classic_guard' ) );
 		add_action( 'woocommerce_checkout_order_processed', array( __CLASS__, 'classic_record' ), 10, 3 );
+		add_action( 'woocommerce_review_order_before_submit', array( __CLASS__, 'classic_import_checkbox' ) );
 		add_action( 'woocommerce_admin_order_data_after_billing_address', array( __CLASS__, 'admin_order_record' ) );
 
 		// 4. Payment page (where Razorpay opens its popup) only for accepted orders.
@@ -252,7 +255,8 @@ class Checkout_Gate {
 
 	private static function fmt( $iso ) {
 		$ts = $iso ? strtotime( $iso ) : 0;
-		return $ts ? esc_html( wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) . ' T', $ts ) ) : '—';
+		$tf = (string) get_option( 'time_format' );
+		return $ts ? esc_html( wp_date( get_option( 'date_format' ) . ' ' . $tf . ( str_contains( $tf, 'T' ) ? '' : ' T' ), $ts ) ) : '—';
 	}
 
 	private static function page_label( $id, $version ) {
@@ -276,6 +280,15 @@ class Checkout_Gate {
 				'required' => true,
 			)
 		);
+		woocommerce_register_additional_checkout_field(
+			array(
+				'id'       => self::IMPORT_ID,
+				'label'    => Settings::get( 'import_confirmation' ),
+				'location' => 'order',
+				'type'     => 'checkbox',
+				'required' => true,
+			)
+		);
 	}
 
 	private static function route_exception( $code, $message, $status ) {
@@ -293,12 +306,29 @@ class Checkout_Gate {
 		if ( ! is_user_logged_in() ) {
 			throw self::route_exception( 'benoquik_login_required', __( 'Please log in or create an account to place your order.', 'benoquik-core' ), 401 );
 		}
+		$restricted = Settings::country_list( Settings::get( 'restricted_countries' ) );
+		$ship_to    = $order->get_shipping_country() ? $order->get_shipping_country() : $order->get_billing_country();
+		if ( $ship_to && in_array( $ship_to, $restricted, true ) ) {
+			$countries = WC()->countries->get_countries();
+			throw self::route_exception(
+				'benoquik_country_not_supported',
+				/* translators: %s: country name */
+				sprintf( __( 'Sorry, we cannot ship to %s.', 'benoquik-core' ), $countries[ $ship_to ] ?? $ship_to ),
+				400
+			);
+		}
 		$fields   = (array) $request->get_param( 'additional_fields' );
 		$accepted = ! empty( $fields[ self::FIELD_ID ] ) && filter_var( $fields[ self::FIELD_ID ], FILTER_VALIDATE_BOOLEAN );
 		if ( ! $accepted ) {
 			throw self::route_exception( 'benoquik_terms_required', __( 'Please tick the box to agree to the Terms & Conditions and Privacy Policy.', 'benoquik-core' ), 400 );
 		}
+		$import = ! empty( $fields[ self::IMPORT_ID ] ) && filter_var( $fields[ self::IMPORT_ID ], FILTER_VALIDATE_BOOLEAN );
+		if ( ! $import ) {
+			throw self::route_exception( 'benoquik_import_confirmation_required', __( 'Please confirm that this medicine may be legally imported into your country for personal use with a valid prescription.', 'benoquik-core' ), 400 );
+		}
 		self::record_on_order( $order, 'checkout' );
+		$order->update_meta_data( self::IMPORT_META, gmdate( 'c' ) );
+		$order->update_meta_data( '_bq_import_confirmation_text', Settings::get( 'import_confirmation' ) );
 	}
 
 	/** Classic (shortcode) checkout fallback. */
@@ -310,14 +340,31 @@ class Checkout_Gate {
 		if ( empty( $_POST['terms'] ) ) {
 			wc_add_notice( __( 'Please tick the box to agree to the Terms & Conditions and Privacy Policy.', 'benoquik-core' ), 'error' );
 		}
+		// phpcs:ignore WordPress.Security.NonceVerification -- WooCommerce verifies the checkout nonce.
+		if ( empty( $_POST['bq_import_confirmation'] ) ) {
+			wc_add_notice( __( 'Please confirm that this medicine may be legally imported into your country for personal use with a valid prescription.', 'benoquik-core' ), 'error' );
+		}
+	}
+
+	public static function classic_import_checkbox() {
+		printf(
+			'<p class="form-row validate-required bq-terms-row"><label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox"><input type="checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" name="bq_import_confirmation" value="1" required> <span>%s</span>&nbsp;<abbr class="required" title="%s">*</abbr></label></p>',
+			esc_html( Settings::get( 'import_confirmation' ) ),
+			esc_attr__( 'required', 'benoquik-core' )
+		);
 	}
 
 	public static function classic_record( $order_id, $posted, $order ) {
 		// phpcs:ignore WordPress.Security.NonceVerification -- WooCommerce verifies the checkout nonce.
 		if ( ! empty( $_POST['terms'] ) ) {
 			self::record_on_order( $order, 'checkout' );
-			$order->save();
 		}
+		// phpcs:ignore WordPress.Security.NonceVerification -- WooCommerce verifies the checkout nonce.
+		if ( ! empty( $_POST['bq_import_confirmation'] ) ) {
+			$order->update_meta_data( self::IMPORT_META, gmdate( 'c' ) );
+			$order->update_meta_data( '_bq_import_confirmation_text', Settings::get( 'import_confirmation' ) );
+		}
+		$order->save();
 	}
 
 	/** "Pay for order" form (e.g. admin-created orders): WooCommerce validates its terms box; record it. */
@@ -353,6 +400,10 @@ class Checkout_Gate {
 		} else {
 			echo '<span style="color:#b32d2e">' . esc_html__( 'Not recorded', 'benoquik-core' ) . '</span>';
 		}
+		echo '</p>';
+		$imp = $order->get_meta( self::IMPORT_META );
+		echo '<p class="form-field form-field-wide bq-import-record"><strong>' . esc_html__( 'Import legality confirmed by customer:', 'benoquik-core' ) . '</strong><br>';
+		echo $imp ? self::fmt( $imp ) . '<br><small>“' . esc_html( (string) $order->get_meta( '_bq_import_confirmation_text' ) ) . '”</small>' : '<span style="color:#b32d2e">' . esc_html__( 'Not recorded', 'benoquik-core' ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput -- fmt() escapes.
 		echo '</p>';
 	}
 }

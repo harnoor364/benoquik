@@ -27,7 +27,7 @@
 
 <!-- wp:group {"className":"bq-note","style":{"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"1.25rem","right":"1.25rem"}}},"backgroundColor":"sky","layout":{"type":"default"}} -->
 <div class="wp-block-group bq-note has-sky-background-color has-background" style="padding-top:1rem;padding-right:1.25rem;padding-bottom:1rem;padding-left:1.25rem"><!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size"><strong>Important:</strong> Benoquik permanently removes pigment from normal skin. It is <strong>not a cure</strong> for vitiligo, does <strong>not restore colour</strong>, and is only for people with extensive vitiligo under a doctor’s supervision.</p>
+<p class="has-small-font-size"><strong>Important:</strong> Benoquik permanently removes pigment from normal skin. It is <strong>not a cure</strong> for vitiligo, does <strong>not restore color</strong>, and is only for people with extensive vitiligo under a doctor’s supervision.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
