@@ -48,6 +48,16 @@ class CLI {
 	}
 
 	/**
+	 * Learn (blog): create the article categories and 6 starter DRAFT articles.
+	 * Never publishes anything and never changes pages, products or the homepage.
+	 *
+	 * @subcommand setup-blog
+	 */
+	public function setup_blog() {
+		self::out( Blog_Setup::run() );
+	}
+
+	/**
 	 * Convert to the international store: USD prices, units, dates, shipping
 	 * zones, international pages and emails; then rebuild Home and flush caches.
 	 *

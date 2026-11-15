@@ -24,6 +24,18 @@
 		'benoquik/price-note': { title: 'Benoquik: Price note (currency, duties)', icon: 'money-alt' },
 		'benoquik/shipping-note': { title: 'Benoquik: Shipping line', icon: 'airplane' },
 		'benoquik/marketed-by': { title: 'Benoquik: Marketed by', icon: 'building' },
+		'benoquik/blog-intro': { title: 'Benoquik: Learn page intro', icon: 'text-page' },
+		'benoquik/category-pills': { title: 'Benoquik: Article category filter', icon: 'tag' },
+		'benoquik/featured-post': { title: 'Benoquik: Featured article', icon: 'star-filled' },
+		'benoquik/post-card-meta': { title: 'Benoquik: Reading time & date', icon: 'clock', usesContext: [ 'postId', 'postType' ] },
+		'benoquik/article-byline': { title: 'Benoquik: Article byline', icon: 'admin-users', usesContext: [ 'postId', 'postType' ] },
+		'benoquik/toc': { title: 'Benoquik: Table of contents', icon: 'list-view', usesContext: [ 'postId', 'postType' ] },
+		'benoquik/references': { title: 'Benoquik: References', icon: 'book', usesContext: [ 'postId', 'postType' ] },
+		'benoquik/article-disclaimer': { title: 'Benoquik: Article medical disclaimer', icon: 'warning' },
+		'benoquik/product-cta': { title: 'Benoquik: Product card (after article)', icon: 'cart', usesContext: [ 'postId', 'postType' ] },
+		'benoquik/author-box': { title: 'Benoquik: Author box', icon: 'id', usesContext: [ 'postId', 'postType' ], attributes: { variant: { type: 'string', default: 'post' } } },
+		'benoquik/related-posts': { title: 'Benoquik: Related articles', icon: 'screenoptions', usesContext: [ 'postId', 'postType' ] },
+		'benoquik/share': { title: 'Benoquik: Share buttons', icon: 'share', usesContext: [ 'postId', 'postType' ] },
 		'benoquik/sticky-cart': { title: 'Benoquik: Sticky add-to-cart (mobile)', icon: 'cart', usesContext: [ 'postId', 'postType' ] }
 	};
 

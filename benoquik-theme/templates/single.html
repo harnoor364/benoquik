@@ -1,27 +1,49 @@
 <!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header"} /-->
 
-<!-- wp:group {"tagName":"main","className":"bq-main bq-single-post","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained","contentSize":"760px"}} -->
-<main class="wp-block-group bq-main bq-single-post" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60)"><!-- wp:shortcode -->
+<!-- wp:group {"tagName":"main","className":"bq-main bq-single-post","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|60"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained","contentSize":"1240px"}} -->
+<main class="wp-block-group bq-main bq-single-post" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--60)"><!-- wp:shortcode -->
 [benoquik_breadcrumbs]
 <!-- /wp:shortcode -->
 
-<!-- wp:post-terms {"term":"category","className":"bq-product-card__cat","fontSize":"x-small"} /-->
+<!-- wp:group {"tagName":"article","className":"bq-article","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"default"}} -->
+<article class="wp-block-group bq-article"><!-- wp:group {"className":"bq-article-header","style":{"spacing":{"blockGap":"0.9rem"}},"layout":{"type":"constrained","contentSize":"820px"}} -->
+<div class="wp-block-group bq-article-header"><!-- wp:post-terms {"term":"category","className":"bq-post-card__cat"} /-->
 
-<!-- wp:post-title {"level":1,"fontSize":"huge"} /-->
+<!-- wp:post-title {"level":1,"className":"bq-article-title"} /-->
 
-<!-- wp:group {"className":"bq-post-meta","layout":{"type":"flex","flexWrap":"wrap"},"fontSize":"small"} -->
-<div class="wp-block-group bq-post-meta has-small-font-size"><!-- wp:post-author-name {"isLink":false} /-->
+<!-- wp:post-excerpt {"className":"bq-article-subtitle"} /-->
 
-<!-- wp:post-date /--></div>
+<!-- wp:benoquik/article-byline /--></div>
 <!-- /wp:group -->
 
-<!-- wp:post-featured-image {"aspectRatio":"16/9"} /-->
+<!-- wp:post-featured-image {"aspectRatio":"16/9","sizeSlug":"large","className":"bq-article-hero"} /-->
 
-<!-- wp:post-content {"layout":{"type":"constrained"}} /-->
+<!-- wp:group {"className":"bq-article-layout","layout":{"type":"default"}} -->
+<div class="wp-block-group bq-article-layout"><!-- wp:benoquik/toc /-->
 
-<!-- wp:paragraph {"className":"bq-note","backgroundColor":"sky","fontSize":"small","style":{"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"1.25rem","right":"1.25rem"}}}} -->
-<p class="bq-note has-sky-background-color has-background has-small-font-size" style="padding-top:1rem;padding-right:1.25rem;padding-bottom:1rem;padding-left:1.25rem"><strong>Medical disclaimer:</strong> This article is general information and does not replace advice from your doctor.</p>
-<!-- /wp:paragraph --></main>
+<!-- wp:group {"className":"bq-article-main","layout":{"type":"default"}} -->
+<div class="wp-block-group bq-article-main"><!-- wp:post-content {"className":"bq-article-body","layout":{"type":"default"}} /-->
+
+<!-- wp:benoquik/references /-->
+
+<!-- wp:benoquik/article-disclaimer /-->
+
+<!-- wp:benoquik/share /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></article>
+<!-- /wp:group -->
+
+<!-- wp:benoquik/product-cta /-->
+
+<!-- wp:benoquik/author-box /-->
+
+<!-- wp:benoquik/related-posts /-->
+
+<!-- wp:group {"className":"bq-post-nav","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+<div class="wp-block-group bq-post-nav"><!-- wp:post-navigation-link {"type":"previous","label":"Previous article","showTitle":true,"arrow":"arrow"} /-->
+
+<!-- wp:post-navigation-link {"label":"Next article","showTitle":true,"arrow":"arrow"} /--></div>
+<!-- /wp:group --></main>
 <!-- /wp:group -->
 
 <!-- wp:template-part {"slug":"footer","tagName":"footer","className":"site-footer"} /-->

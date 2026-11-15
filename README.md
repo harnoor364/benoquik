@@ -58,6 +58,37 @@ and then repeat steps 3 and 4.
 
 ---
 
+## Learn (blog) — theme 0.4.1 / plugin 0.5.1
+
+Articles live at `/learn/` (the *Learn* page is the WordPress posts page), with these addresses:
+
+| Page | Address |
+|---|---|
+| Article | `/learn/<article>/` |
+| Category | `/learn/category/<category>/` |
+| Tag | `/learn/tag/<tag>/` |
+| Author | `/learn/author/<name>/` |
+
+**Templates** (Appearance → Editor → Templates):
+
+| Template | What's on it |
+|---|---|
+| *Blog Home* | Hero with article search, category pills, the featured (sticky) article, then a 3/2/1-column grid with 9 per page |
+| *Single Posts* | Breadcrumb, byline with author, medical reviewer, dates and reading time, featured image, sticky table of contents, references, disclaimer, share buttons, product card, author box, related articles, previous/next |
+| *Archives*, *Author* and *Search* | The same article cards |
+
+**Article fields:** set per post in the editor sidebar under **Benoquik article details**: medical reviewer, last reviewed date,
+references and "hide product card". Reading time is automatic. Authors get **Credentials** and a **Profile photo** under **Users → Profile**.
+
+**SEO:** the theme outputs no meta tags or schema. Rank Math does. The plugin only adds the medical reviewer (`reviewedBy`) and
+`lastReviewed` to Rank Math's WebPage schema through the `rank_math/json_ld` filter.
+
+**Starter content:** create the categories and 6 draft articles (nothing is published, and pages, products and the homepage are not touched):
+```bash
+wp benoquik setup-blog
+```
+No shell? Use **Benoquik → Set up Learn (blog)**. See **PLACEHOLDERS.md → "How to publish a blog post"**.
+
 ## International store (theme 0.4.0 / plugin 0.5.0)
 
 The store sells in **USD** to customers outside India and ships from India.

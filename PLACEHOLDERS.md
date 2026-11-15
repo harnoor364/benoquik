@@ -127,3 +127,46 @@ Also delete WordPress's sample content: **Posts → "Hello world!"** and **Pages
 |---|---|---|
 | ☐ | Admin login `admin` / `admin` (local demo only) | **Users → Profile → New password** |
 | ☐ | Admin email `admin@example.com` | **Settings → General → Administration Email Address** |
+
+## 10. Learn (blog)
+
+| ✓ | Item | Where |
+|---|---|---|
+| ☐ | 6 starter articles are **drafts** with outlines and "[To be written: …]" placeholders. Write each one and have it **medically reviewed** before publishing | **Posts** (filter: Drafts) |
+| ☐ | References in the drafts are marked "(to verify)" or "Add peer-reviewed source(s) here" | Edit post → sidebar → **Benoquik article details → References** |
+| ☐ | Featured images are abstract placeholders (alt text says "Placeholder image") | Edit post → **Featured image** |
+| ☐ | Author name and photo. Articles currently show the **admin** user. Set a real display name, bio, **Credentials** and **Profile photo** | **Users → Profile** ("Benoquik author profile" section) |
+| ☐ | Medical reviewer for each article (name, credentials such as "MD, Dermatology", optional bio link, last reviewed date) | Edit post → **Benoquik article details** |
+| ☐ | Delete WordPress's sample post "Hello world!" | **Posts** |
+| ☐ | Rank Math breadcrumbs: turn on **Show Blog Page** and **Show Category(s)** so articles read *Home / Learn / Category / Title* | **Rank Math → General Settings → Breadcrumbs** |
+| ☐ | Rank Math schema for posts: **Article** (or *BlogPosting*) | **Rank Math → Titles & Meta → Posts → Schema Type** |
+| ☐ | Confirm posts are in the sitemap | **Rank Math → Sitemap Settings → Posts → Include in Sitemap** = On, then open `/sitemap_index.xml` |
+| ☐ | Article disclaimer text | **Benoquik → Settings → Learn (blog)** |
+
+### How to publish a blog post
+
+1. **Write:** go to **Posts → Add New** (or open a draft from **Posts**). Type the title, then write the article. Use
+   **Heading 2** for main sections and **Heading 3** for sub-sections. They build the "In this article" table of
+   contents automatically.
+   - Notice boxes: click **+ → Patterns → Benoquik: Article boxes** (*Key takeaways*, *Info*, *Important*, *Safety warning*),
+     or select any Group block → **Styles**.
+   - Don't add the product card, disclaimer, references or author box yourself. They're added automatically at the end.
+2. **Category:** in the right-hand sidebar, open the **Post** tab → **Categories** and tick one, for example *Using Benoquik Safely*.
+   Add a few **Tags** if you like.
+3. **Featured image + alt text:** sidebar → **Featured image** → *Set featured image* → upload or choose an image. Before
+   clicking *Set featured image*, fill in **Alternative Text** with a short description of the picture. If it's missing,
+   the editor shows a warning. Use a landscape image (16:9, at least 1600 × 900 px).
+4. **Excerpt:** sidebar → **Excerpt**: one or two sentences. It appears under the title and on the article cards.
+5. **Medical reviewer & references:** sidebar → **Benoquik article details**:
+   - reviewer name, credentials (e.g. "MD, Dermatology"), optional bio link and **Last reviewed** date;
+   - **+ Add reference** for each source (title + link);
+   - tick **Hide the product card** for articles where the product card isn't appropriate.
+
+   Reading time is calculated automatically.
+6. **Rank Math:** in the Rank Math panel (top right, or below the editor), enter a **Focus Keyword**, then edit the
+   **SEO title** and **meta description** (*Edit Snippet*). Aim for green checks, but keep the medical wording accurate:
+   no "cure", "guaranteed" or timed result promises.
+7. **Check & publish:** remove the "DRAFT — to be written and medically reviewed" box. Click **Preview** to check it on
+   phone and desktop, then **Publish**. The pre-publish panel lists anything still missing (featured image, alt text,
+   reviewer, draft note).
+   - To make an article the large **featured** card at the top of /learn/, sidebar → **Summary** → tick **Stick to the top of the blog**.

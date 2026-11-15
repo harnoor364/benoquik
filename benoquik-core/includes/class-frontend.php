@@ -51,7 +51,29 @@ class Frontend {
 		}
 		// Plain fallback (no schema) when Rank Math is not active.
 		$crumbs = array( '<a href="' . esc_url( home_url( '/' ) ) . '">' . esc_html__( 'Home', 'benoquik-core' ) . '</a>' );
-		if ( is_singular() ) {
+		$learn  = (int) get_option( 'page_for_posts' );
+		$link   = static fn( $url, $text ) => '<a href="' . esc_url( $url ) . '">' . esc_html( $text ) . '</a>';
+		$here   = static fn( $text ) => '<span aria-current="page">' . esc_html( $text ) . '</span>';
+		if ( is_singular( 'post' ) || is_category() || is_tag() || is_author() ) {
+			if ( $learn ) {
+				$crumbs[] = $link( get_permalink( $learn ), get_the_title( $learn ) );
+			}
+			if ( is_singular( 'post' ) ) {
+				$cats = get_the_category();
+				if ( $cats ) {
+					$crumbs[] = $link( get_category_link( $cats[0] ), $cats[0]->name );
+				}
+				$crumbs[] = $here( get_the_title() );
+			} elseif ( is_author() ) {
+				$crumbs[] = $here( get_the_author_meta( 'display_name', get_queried_object_id() ) );
+			} else {
+				$crumbs[] = $here( single_term_title( '', false ) );
+			}
+		} elseif ( is_home() ) {
+			$crumbs[] = $here( $learn ? get_the_title( $learn ) : __( 'Learn', 'benoquik-core' ) );
+		} elseif ( is_search() ) {
+			$crumbs[] = $here( __( 'Search results', 'benoquik-core' ) );
+		} elseif ( is_singular() ) {
 			foreach ( array_reverse( get_post_ancestors( get_the_ID() ) ) as $anc ) {
 				$crumbs[] = '<a href="' . esc_url( get_permalink( $anc ) ) . '">' . esc_html( get_the_title( $anc ) ) . '</a>';
 			}

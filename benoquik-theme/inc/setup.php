@@ -63,6 +63,7 @@ add_action(
 	static function () {
 		register_block_pattern_category( 'benoquik-home', array( 'label' => __( 'Benoquik: Homepage sections', 'benoquik' ) ) );
 		register_block_pattern_category( 'benoquik-pages', array( 'label' => __( 'Benoquik: Page sections', 'benoquik' ) ) );
+		register_block_pattern_category( 'benoquik-article', array( 'label' => __( 'Benoquik: Article boxes', 'benoquik' ) ) );
 	}
 );
 

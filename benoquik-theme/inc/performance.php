@@ -179,3 +179,20 @@ add_filter(
  * (fewer render-blocking files on mobile). WordPress default is 20 KB total.
  */
 add_filter( 'styles_inline_size_limit', static fn() => 60000 );
+
+/**
+ * Article featured image (class "bq-article-hero") is above the fold on single
+ * posts: load it eagerly with high priority. Card images below stay lazy.
+ */
+add_filter(
+	'render_block_core/post-featured-image',
+	static function ( $html, $block ) {
+		if ( ! is_singular( 'post' ) || empty( $block['attrs']['className'] ) || ! str_contains( $block['attrs']['className'], 'bq-article-hero' ) ) {
+			return $html;
+		}
+		$html = str_replace( array( ' loading="lazy"', ' fetchpriority="high"' ), '', $html );
+		return preg_replace( '/<img /', '<img fetchpriority="high" loading="eager" ', $html, 1 );
+	},
+	10,
+	2
+);

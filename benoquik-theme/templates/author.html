@@ -1,0 +1,51 @@
+<!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"bq-main bq-blog bq-author","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|60"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained","contentSize":"1240px"}} -->
+<main class="wp-block-group bq-main bq-blog bq-author" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--60)"><!-- wp:shortcode -->
+[benoquik_breadcrumbs]
+<!-- /wp:shortcode -->
+
+<!-- wp:benoquik/author-box {"variant":"archive"} /-->
+
+<!-- wp:heading {"fontSize":"x-large"} -->
+<h2 class="wp-block-heading has-x-large-font-size">Articles</h2>
+<!-- /wp:heading -->
+
+<!-- wp:query {"queryId":53,"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"className":"bq-blog-query"} -->
+<div class="wp-block-query bq-blog-query"><!-- wp:post-template {"className":"bq-post-grid-cards","layout":{"type":"default"}} -->
+<!-- wp:group {"tagName":"article","className":"bq-post-card","layout":{"type":"default"}} -->
+<article class="wp-block-group bq-post-card"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9","sizeSlug":"medium_large","className":"bq-post-card__media"} /-->
+
+<!-- wp:group {"className":"bq-post-card__body","layout":{"type":"default"}} -->
+<div class="wp-block-group bq-post-card__body"><!-- wp:post-terms {"term":"category","className":"bq-post-card__cat"} /-->
+
+<!-- wp:post-title {"level":3,"isLink":true,"className":"bq-post-card__title"} /-->
+
+<!-- wp:post-excerpt {"excerptLength":24,"className":"bq-post-card__excerpt"} /-->
+
+<!-- wp:benoquik/post-card-meta /-->
+
+<!-- wp:read-more {"content":"Read article","className":"bq-post-card__more"} /--></div>
+<!-- /wp:group --></article>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination {"paginationArrow":"arrow","className":"bq-pagination","layout":{"type":"flex","justifyContent":"center"}} -->
+<!-- wp:query-pagination-previous /-->
+
+<!-- wp:query-pagination-numbers /-->
+
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:group {"className":"bq-empty","layout":{"type":"default"}} -->
+<div class="wp-block-group bq-empty"><!-- wp:paragraph -->
+<p>No articles yet — check back soon, or browse all <a href="/learn/">Learn</a> articles.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer","className":"site-footer"} /-->

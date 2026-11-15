@@ -47,6 +47,12 @@ class Settings {
 					'import_confirmation' => array( __( 'Import confirmation checkbox (checkout)', 'benoquik-core' ), 'text', 'I confirm this medicine may be legally imported into my country for personal use with a valid prescription.', __( 'Required at checkout and saved on the order.', 'benoquik-core' ) ),
 				),
 			),
+			'blog'       => array(
+				'title'  => __( 'Learn (blog)', 'benoquik-core' ),
+				'fields' => array(
+					'blog_disclaimer' => array( __( 'Medical disclaimer at the end of every article', 'benoquik-core' ), 'textarea', 'This article is for general information only and is not medical advice. Monobenzone is a prescription medicine — always follow your doctor’s advice.', '' ),
+				),
+			),
 			'shipping'   => array(
 				'title'  => __( 'Shipping countries', 'benoquik-core' ),
 				'fields' => array(
