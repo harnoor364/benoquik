@@ -79,6 +79,26 @@ class Settings {
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ) );
 		add_action( 'admin_init', array( __CLASS__, 'register' ) );
+		add_action( 'init', array( __CLASS__, 'migrate_contact_details' ) );
+	}
+
+	/**
+	 * One-time update: writes the current support phone, WhatsApp number and email
+	 * into the saved settings, so sites that already saved older values pick them up.
+	 * Runs once; after that, edit them in Benoquik -> Settings as usual.
+	 */
+	public static function migrate_contact_details() {
+		$flag = 'benoquik_contact_migrated_2026_11';
+		if ( get_option( $flag ) ) {
+			return;
+		}
+		$opts                    = get_option( self::OPTION, array() );
+		$opts                    = is_array( $opts ) ? $opts : array();
+		$opts['whatsapp_number'] = '18314802325';
+		$opts['support_phone']   = '+1-8314802325';
+		$opts['support_email']   = 'Support@benoquik.us';
+		update_option( self::OPTION, $opts );
+		update_option( $flag, 1, false );
 	}
 
 	/** Parse "IN, us ,GB" into ['IN','US','GB'] (valid WooCommerce country codes only). */
