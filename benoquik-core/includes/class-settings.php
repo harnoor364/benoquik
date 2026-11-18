@@ -20,10 +20,10 @@ class Settings {
 			'store'      => array(
 				'title'  => __( 'Contact & support', 'benoquik-core' ),
 				'fields' => array(
-					'whatsapp_number'  => array( __( 'WhatsApp number', 'benoquik-core' ), 'text', '910000000000', __( 'International format, digits only, starting with the country code. Example for India: 919876543210. Used by every button with the CSS class "bq-whatsapp".', 'benoquik-core' ) ),
+					'whatsapp_number'  => array( __( 'WhatsApp number', 'benoquik-core' ), 'text', '18314802325', __( 'International format, digits only, starting with the country code. Example for India: 919876543210. Used by every button with the CSS class "bq-whatsapp".', 'benoquik-core' ) ),
 					'whatsapp_message' => array( __( 'WhatsApp pre-filled message', 'benoquik-core' ), 'text', 'Hello, I have a question about Benoquik.', '' ),
-					'support_phone'    => array( __( 'Support phone (display, with country code)', 'benoquik-core' ), 'text', '+91 00000 00000 (placeholder)', '' ),
-					'support_email'    => array( __( 'Support email', 'benoquik-core' ), 'email', 'care@example.com', '' ),
+					'support_phone'    => array( __( 'Support phone (display, with country code)', 'benoquik-core' ), 'text', '+1-8314802325', '' ),
+					'support_email'    => array( __( 'Support email', 'benoquik-core' ), 'email', 'Support@benoquik.us', '' ),
 					'support_hours'    => array( __( 'Support hours (with time zone)', 'benoquik-core' ), 'text', 'Mon–Sat, 09:00–18:00 IST (UTC+5:30) · We reply within 1 business day', __( 'Shown on the Contact page and in emails.', 'benoquik-core' ) ),
 				),
 			),

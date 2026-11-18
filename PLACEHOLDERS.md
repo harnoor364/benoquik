@@ -76,9 +76,9 @@ If you change the $99 free-shipping threshold, also update the **announcement ba
 
 | ✓ | Item | Current placeholder | Where |
 |---|---|---|---|
-| ☐ | WhatsApp number (international format, digits only) | `910000000000` | **Benoquik → Settings → WhatsApp number** |
-| ☐ | Support phone (with country code) | `+91 00000 00000 (placeholder)` | **Benoquik → Settings → Support phone** |
-| ☐ | Support email | `care@example.com` | **Benoquik → Settings → Support email** |
+| ☑ | WhatsApp number (international format, digits only) | `18314802325` | **Benoquik → Settings → WhatsApp number** |
+| ☑ | Support phone (with country code) | `+1-8314802325` | **Benoquik → Settings → Support phone** |
+| ☑ | Support email | `Support@benoquik.us` | **Benoquik → Settings → Support email** |
 | ☐ | Support hours and response time | `Mon–Sat, 09:00–18:00 IST (UTC+5:30) · We reply within 1 business day` | **Benoquik → Settings → Support hours** (also used in emails; re-run *Repair store data* to refresh the email texts) |
 | ☐ | Email footer and extra email texts | International wording with support hours | **WooCommerce → Settings → Emails** (each email → *Additional content*) |
 

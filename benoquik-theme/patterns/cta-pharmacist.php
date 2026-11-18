@@ -20,7 +20,7 @@
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 <div class="wp-block-buttons"><!-- wp:button {"className":"bq-whatsapp"} -->
-<div class="wp-block-button bq-whatsapp"><a class="wp-block-button__link wp-element-button" href="https://wa.me/919999999999">Talk to a pharmacist</a></div>
+<div class="wp-block-button bq-whatsapp"><a class="wp-block-button__link wp-element-button" href="https://wa.me/18314802325">Talk to a pharmacist</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div></div>
 <!-- /wp:cover --></div>
