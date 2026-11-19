@@ -16,6 +16,28 @@ class Frontend {
 		add_filter( 'render_block_core/navigation-link', array( __CLASS__, 'whatsapp_button' ), 10, 2 );
 		add_shortcode( 'benoquik_breadcrumbs', array( __CLASS__, 'breadcrumbs' ) );
 		add_shortcode( 'benoquik_whatsapp_url', array( __CLASS__, 'whatsapp_url' ) );
+		add_action( 'wp_footer', array( __CLASS__, 'chatbot' ), 100 );
+	}
+
+	/**
+	 * Chat bubble (hosted webchat), printed just before </body> on every front-end page.
+	 * To switch it off, add: add_filter( 'benoquik_chatbot_enabled', '__return_false' );
+	 */
+	public static function chatbot() {
+		if ( is_admin() || ! apply_filters( 'benoquik_chatbot_enabled', true ) ) {
+			return;
+		}
+		?>
+<link rel="stylesheet" href="https://vdk-viber-runtime-prod.bot.botpress.host/edge/webchat.css" />
+<script src="https://vdk-viber-runtime-prod.bot.botpress.host/edge/webchat.js"></script>
+<script>
+  fetch("https://vdk-viber-runtime-prod.bot.botpress.host/edge/bots/ae446a54-d582-4e70-9163-53fc006ec074/config")
+    .then((res) => res.json())
+    .then(({ webchat }) =>
+      VdkEdgeWebchat.mount({ ...webchat, mode: "bubble", baseUrl: "https://vdk-viber-runtime-prod.bot.botpress.host", botId: "ae446a54-d582-4e70-9163-53fc006ec074" })
+    )
+</script>
+		<?php
 	}
 
 	public static function whatsapp_url() {
